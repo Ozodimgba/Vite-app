@@ -41,7 +41,7 @@ const MainCard = ({ data, dropdata }) => {
   
     return (
       <div className="p-4 px-10 w-[100%] flex justify-between bg-white py-10 rounded-md shadow-md">
-        <div className="text-black">
+        <div className="text-black bg-black">
         
         <Terms data={dropdata} />
         </div>

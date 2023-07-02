@@ -1,12 +1,13 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import Plot from 'react-plotly.js';
 
-const BarChart = () => {
+const BarChart = ({ bardata, title }) => {
   const data = [
     {
-      x: ['Category 1', 'Category 2', 'Category 3'],
-      y: [4, 6, 2],
+      x: bardata?.labels,
+      y: bardata?.data,
       type: 'bar',
       marker: {
         color: 'blue', // Change bar color
@@ -17,8 +18,15 @@ const BarChart = () => {
   ];
 
   const layout = {
-    title: 'Top Rev',
-    xaxis: { title: 'Categories' },
+    title: {
+      text: `${title}`,
+      font: {
+        family: 'Inter, sans-serif',
+        size: 20,
+        weight: 'bold', // Set the weight to 'bold' to make the title text bolder
+      },
+    },
+    xaxis: { title: 'Terms', showticklabels: false, },
     yaxis: { title: 'Values' },
     bargap: 0.5, // Adjust the gap between bars
     bargroupgap: 0.1,

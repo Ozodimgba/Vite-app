@@ -244,48 +244,6 @@ console.log("here" + JSON.stringify(eleven))
     },
   };
 
-  const TopRevBarChart = {
-    chart: {
-      type: quarter?.type
-    },
-    series: [
-      {
-        name: '',
-        data: tfo?.data
-      }
-    ],
-    xaxis: {
-      labels: {
-        show: false,
-      },
-      categories: tfo?.labels
-    },
-    plotOptions: {
-      bar: {
-        columnWidth: '50%',
-        dataLabels: {
-          position: 'top',
-        },
-      }
-    },
-    dataLabels: {
-      formatter: (val) => {
-        return val / 100000000 + 'B'
-      },
-      enabled: false,
-    },
-    title: {
-      text: 'Top Five terms by Revenue'
-    },
-    theme: {
-      monochrome: {
-        enabled: true,
-        color: '#1652f0',
-        shadeTo: 'dark',
-        shadeIntensity: 0.65
-      }
-    }
-  };
   
   const BottomRevBarChart = {
     chart: {
@@ -648,12 +606,12 @@ console.log("here" + JSON.stringify(eleven))
   // ]
 
   const Tabs = [
-    <div className='w-[100%] grid grid-cols-2 gap-6'>
+    <div className='w-[100%] grid grid-cols-2 gap-3'>
       <div className='col-span-2'>
         <MainCard data={eleven} dropdata={list} />
       </div>
-    <BarChart />
-    <BarChart />
+    <BarChart bardata={tfo} title="Top Five terms by Revenue" />
+    <BarChart bardata={btr} title="Bottom Five terms by Revenue" />
     <BarChart />
     <BarChart />
     <BarChart />
@@ -763,6 +721,14 @@ const My_Component4 = <MdOutlineAttachMoney color='white' />
       <h1>Terms: {terms}</h1>
       <h1>Sectors: {sectors}</h1>
       <h1>Companies: {companies}</h1> */}
+    <div className='flex gap-2 border-white rounded-full bg-[#051131] mt-4 py-2 px-2'>
+     <Fliter data={list} setSelectedTags={setSelectedTags} selectedTags={selectedTags} setRegions={setRegions} regions={regions} />
+     
+     <Companies data={list} setSelectedTags={setSelectedTags} selectedTags={selectedTags} setCountry={setCompanies} country={companies} />
+     <Country data={list} setSelectedTags={setSelectedTags} selectedTags={selectedTags} setCountry={setCountry} country={country} />
+     <Terms data={list} setSelectedTags={setSelectedTags} selectedTags={selectedTags} setCountry={setTerms} country={terms} />
+     <Sectors data={list} setSelectedTags={setSelectedTags} selectedTags={selectedTags} setCountry={setSectors} country={sectors} />
+     </div>
 
     <div className='grid grid-cols-3 gap-6 mt-4'>
     <Card title="Companies Present Based On Filters" color="bg-blue-800" icon={My_Component} number={card["Companies Present"]} duration={3000} />
@@ -778,15 +744,6 @@ const My_Component4 = <MdOutlineAttachMoney color='white' />
     <Card title="Average Gross Profit Across Companies" color="bg-blue-800" icon={My_Component4} number={cardthree["Average Gross Profit"]} duration={3000} /> 
     </div>
       
-  
-     <div className='flex gap-2 border-white rounded-full bg-[#051131] mt-4 py-2 px-2'>
-     <Fliter data={list} setSelectedTags={setSelectedTags} selectedTags={selectedTags} setRegions={setRegions} regions={regions} />
-     
-     <Companies data={list} setSelectedTags={setSelectedTags} selectedTags={selectedTags} setCountry={setCompanies} country={companies} />
-     <Country data={list} setSelectedTags={setSelectedTags} selectedTags={selectedTags} setCountry={setCountry} country={country} />
-     <Terms data={list} setSelectedTags={setSelectedTags} selectedTags={selectedTags} setCountry={setTerms} country={terms} />
-     <Sectors data={list} setSelectedTags={setSelectedTags} selectedTags={selectedTags} setCountry={setSectors} country={sectors} />
-     </div>
 
      <div className='flex flex-wrap mt-2 w-[100%] gap-2'>
       {selectedTags.map((tag, index) => (
