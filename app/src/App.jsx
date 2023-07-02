@@ -7,7 +7,9 @@ import Query from './components/Query';
 //import { BsChatLeftTextFill } from 'react-icons/bs';
 import { BiFlag, BiSolidCircleThreeQuarter } from 'react-icons/bi'
 import { MdOutlineAttachMoney } from 'react-icons/md'
-import ApexCharts from 'apexcharts';
+import TreeMapChart from './Treemap';
+import FunnelChart from './FunnelChart';
+import { WorldMap } from './Map';
 
 
 import StockCard from './components/StockCard';
@@ -20,6 +22,7 @@ import BarChart from './BarChart';
 import { MdOutlineAccountBalance } from 'react-icons/md'
 import Card from './components/Card';
 import axios from 'axios';
+import HeatmapChart from './Heatmap';
 
 
 
@@ -762,6 +765,17 @@ const My_Component4 = <MdOutlineAttachMoney color='white' />
      <div className=' h-[100%]  px-10 w-[100%] gap-2'>
      <h1 className='text-xl py-3 text-[#1b254b] font-bold'>Visualization</h1>
      {/* {Tabs[currentIndex]} */}
+     <div className='w-[100%] grid grid-cols-2 gap-6'>
+     <BarChart />
+     <BarChart />
+     <TreeMapChart />
+     <HeatmapChart />
+     <FunnelChart />
+     <div className='col-span-2'>
+     <WorldMap />
+     </div>
+     
+     </div>
      </div>
      
      </div>
