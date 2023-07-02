@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 /* eslint-disable react/jsx-no-undef */
 /* eslint-disable no-unused-vars */
 import { useState, useRef, useEffect } from 'react';
@@ -10,8 +11,9 @@ import { MdOutlineAttachMoney } from 'react-icons/md'
 import TreeMapChart from './Treemap';
 import FunnelChart from './FunnelChart';
 import { WorldMap } from './Map';
+import Cloud from './Word';
 
-
+import MainCard from './components/MainCard';
 import StockCard from './components/StockCard';
 import Country from './components/filters/Countries';
 import Sectors from './components/filters/Sectors';
@@ -176,7 +178,7 @@ export default function Home() {
         fetchData();
       }, [payload]);
 
-console.log("here" + JSON.stringify(seven))
+console.log("here" + JSON.stringify(eleven))
 //console.log(cardtwo["Total Revenue"])
 // function formatNumber(value) {
 //   const trillion = 1000000000000;
@@ -599,7 +601,7 @@ console.log("here" + JSON.stringify(seven))
   //   //Financials
   //     // eslint-disable-next-line react/jsx-key
   //     <div className='flex flex-wrap justify-between h-[100%] w-[100%]'>
-  //       <StockCard data={seven} />
+  //       
   //       <div className='bg-white w-[100%] mt-4'>
   //     <ApexCharts options={treemapOptions} series={treemapOptions.series} type='treemap' /> 
   //     </div>
@@ -644,6 +646,38 @@ console.log("here" + JSON.stringify(seven))
   //     </div> */}
   //     </div>
   // ]
+
+  const Tabs = [
+    <div className='w-[100%] grid grid-cols-2 gap-6'>
+      <div className='col-span-2'>
+        <MainCard data={eleven} dropdata={list} />
+      </div>
+    <BarChart />
+    <BarChart />
+    <BarChart />
+    <BarChart />
+    <BarChart />
+    <BarChart />
+    </div>,
+    <div className='w-[100%] gap-6 flex flex-col items-center justify-center'>
+    <StockCard data={seven} />
+    <TreeMapChart />
+    <TreeMapChart />
+    <TreeMapChart />
+    <FunnelChart />
+    <FunnelChart />
+    </div>,
+    <div className='w-[100%] gap-6 flex flex-col items-center justify-center'>
+      <HeatmapChart />
+      <div className='bg-[#141414] px-2 flex text-center rounded-lg'>
+      <Cloud />
+      </div>
+     
+     <div className='col-span-2 w-[80%]'>
+     <WorldMap />
+     </div>
+    </div>
+  ]
 
 function removeTag(tag) {
   const updatedTags = selectedTags.filter((selectedTag) => selectedTag !== tag);
@@ -764,18 +798,8 @@ const My_Component4 = <MdOutlineAttachMoney color='white' />
 
      <div className=' h-[100%]  px-10 w-[100%] gap-2'>
      <h1 className='text-xl py-3 text-[#1b254b] font-bold'>Visualization</h1>
-     {/* {Tabs[currentIndex]} */}
-     <div className='w-[100%] grid grid-cols-2 gap-6'>
-     <BarChart />
-     <BarChart />
-     <TreeMapChart />
-     <HeatmapChart />
-     <FunnelChart />
-     <div className='col-span-2'>
-     <WorldMap />
-     </div>
+     {Tabs[currentIndex]}
      
-     </div>
      </div>
      
      </div>
