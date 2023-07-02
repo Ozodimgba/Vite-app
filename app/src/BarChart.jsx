@@ -27,7 +27,7 @@ const BarChart = ({ bardata, title }) => {
       },
     },
     xaxis: { title: 'Terms', showticklabels: false, },
-    yaxis: { title: 'Values' },
+    yaxis: { title: 'Revenue' },
     bargap: 0.5, // Adjust the gap between bars
     bargroupgap: 0.1,
   };

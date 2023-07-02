@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { useEffect } from "react";
 import Terms from "./filters/Terms";
 
 const MainCard = ({ data, dropdata }) => {

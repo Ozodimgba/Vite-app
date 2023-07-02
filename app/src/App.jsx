@@ -244,166 +244,6 @@ console.log("here" + JSON.stringify(eleven))
     },
   };
 
-  
-  const BottomRevBarChart = {
-    chart: {
-      type: quarter?.type
-    },
-    series: [
-      {
-        name: 'My Dataset',
-        data: btr?.data
-      }
-    ],
-    xaxis: {
-      labels: {
-        show: false,
-      },
-      categories: btr?.labels
-    },
-    plotOptions: {
-      bar: {
-        columnWidth: '50%',
-        horizontal: false,
-        dataLabels: {
-          position: 'top',
-        },
-      }
-    },
-    dataLabels: {
-      formatter: (val) => {
-        return val / 100000000 + 'B'
-      },
-      enabled: false,
-    },
-    title: {
-      text: 'Bottom Five terms by Revenue'
-    },
-  };
-
-  const TopCostRevBarChart = {
-    chart: {
-      type: quarter?.type
-    },
-    series: [
-      {
-        name: 'My Dataset',
-        data: one?.data
-      }
-    ],
-    xaxis: {
-      categories: one?.labels
-    },
-    plotOptions: {
-      bar: {
-        horizontal: true,
-        dataLabels: {
-          position: 'top',
-        },
-      }
-    },
-    dataLabels: {
-      formatter: (val) => {
-        return val / 100000000 + 'B'
-      }
-    },
-    title: {
-      text: 'Top Five terms by cost of revenue'
-    },
-  };
-
-  const BottomCostRevBarChart = {
-    chart: {
-      type: quarter?.type
-    },
-    series: [
-      {
-        name: 'My Dataset',
-        data: two?.data
-      }
-    ],
-    xaxis: {
-      categories: two?.labels
-    },
-    plotOptions: {
-      bar: {
-        horizontal: true,
-        dataLabels: {
-          position: 'top',
-        },
-      }
-    },
-    dataLabels: {
-      formatter: (val) => {
-        return val / 100000000 + 'B'
-      }
-    },
-    title: {
-      text: 'Bottom Five terms by cost of revenue'
-    },
-  };
-
-  const TopbyOptIncome = {
-    chart: {
-      type: quarter?.type
-    },
-    series: [
-      {
-        name: 'My Dataset',
-        data: three?.data
-      }
-    ],
-    xaxis: {
-      categories: three?.labels
-    },
-    plotOptions: {
-      bar: {
-        horizontal: true,
-        dataLabels: {
-          position: 'top',
-        },
-      }
-    },
-    dataLabels: {
-      formatter: (val) => {
-        return val / 100000000 + 'B'
-      }
-    },
-    title: {
-      text: 'Top Five terms by operating income'
-    },
-  };
-
-  const BottombyOptIncome = {
-    chart: {
-      type: quarter?.type
-    },
-    series: [
-      {
-        name: '',
-        data: four?.data
-      }
-    ],
-    xaxis: {
-      categories: four?.labels
-    },
-    plotOptions: {
-      bar: {
-        horizontal: true,
-        dataLabels: {
-          position: 'top',
-        },
-      }
-    },
-    dataLabels: {
-      formatter: (val) => {
-        return val / 100000000 + 'B'
-      }
-    },
-    title: {
-      text: 'Bottom Five terms by operating income'
-    },
-  };
 
   // const options = {
   //   chart: {
@@ -513,48 +353,7 @@ console.log("here" + JSON.stringify(eleven))
 
   //   const Tabs = [
   //     // eslint-disable-next-line react/jsx-key
-  //     <div className='grid grid-cols-2 justify-between h-[100%] w-[100%]'>
 
-  //       <div className='w-[100%] flex justify-center'>
-  //       <div className='bg-white w-[70%] rounded-lg p-3 mt-4'>
-  //     <ApexCharts options={TopRevBarChart} series={TopRevBarChart.series} type='bar' /> 
-  //     </div>
-  //       </div>
-        
-      
-        
-      
-  //       <div className='w-[100%] flex justify-center'>
-  //     <div className='bg-white w-[70%] rounded-lg p-3 mt-4'>
-  //     <ApexCharts options={BottomRevBarChart} series={BottomRevBarChart.series} type='bar' /> 
-  //     </div>
-  //     </div>
-
-  //     <div className='w-[100%] flex justify-center'>
-  //     <div className='bg-white w-[70%] rounded-lg p-3 mt-4'>
-  //     <ApexCharts options={TopCostRevBarChart} series={TopCostRevBarChart.series} type='bar' /> 
-  //     </div>
-  //     </div>
-
-  //     <div className='w-[100%] flex justify-center'>
-  //     <div className='bg-white w-[70%] rounded-lg p-3 mt-4'>
-  //     <ApexCharts options={BottomCostRevBarChart} series={BottomCostRevBarChart.series} type='bar' /> 
-  //     </div>
-  //     </div>
-
-  //     <div className='w-[100%] flex justify-center'>
-  //     <div className='bg-white w-[70%] rounded-lg p-3 mt-4'>
-  //     <ApexCharts options={TopbyOptIncome} series={TopbyOptIncome.series} type='bar' /> 
-  //     </div>
-  //     </div>
-
-  //     <div className='w-[100%] flex justify-center'>
-  //     <div className='bg-white w-[70%] rounded-lg p-3 mt-4'>
-  //     <ApexCharts options={BottombyOptIncome} series={BottombyOptIncome.series} type='bar' /> 
-  //     </div>
-  //     </div>
-      
-  //     </div>,
     
   //   //Financials
   //     // eslint-disable-next-line react/jsx-key
@@ -612,11 +411,12 @@ console.log("here" + JSON.stringify(eleven))
       </div>
     <BarChart bardata={tfo} title="Top Five terms by Revenue" />
     <BarChart bardata={btr} title="Bottom Five terms by Revenue" />
-    <BarChart />
-    <BarChart />
-    <BarChart />
-    <BarChart />
+    <BarChart bardata={one} title="Top Five terms by cost of revenue" />
+    <BarChart bardata={two} title='Bottom Five terms by cost of revenue' />
+    <BarChart bardata={three} title='Top Five terms by operating income' />
+    <BarChart bardata={four} title='Bottom Five terms by operating income' />
     </div>,
+
     <div className='w-[100%] gap-6 flex flex-col items-center justify-center'>
     <StockCard data={seven} />
     <TreeMapChart />
