@@ -44,7 +44,6 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [sectors, setSectors] = useState(['All'])
   const [terms, setTerms] = useState(['All'])
-  const [term, setTerm] = useState('Cloud')
   const [list, setList] = useState(null)
   const [tfr, setTfr] = useState(null)
   const [tfo, setTfo] = useState(null)
@@ -102,7 +101,7 @@ export default function Home() {
     "companies": companies,
     "sectors": sectors,
     "terms": terms,
-    "term": "Cloud"
+    "term": 'Cloud'
   }
   
   
@@ -129,7 +128,7 @@ export default function Home() {
           const url17 = 'https://data-value-tool.up.railway.app/average-operating-income-variation-over-quarters-and-years';
           const url18 = 'https://data-value-tool.up.railway.app/average-gross-profit-variation-over-quarters-and-years';
           const url19 = 'https://data-value-tool.up.railway.app/average-financials-for-individual-terms';
-          const url20 = 'https://data-value-tool.up.railway.app/average-financials-for-individual-terms';
+          
 
       
           try {
@@ -233,28 +232,6 @@ console.log("here" + JSON.stringify(tfr?.x))
   //   }
   // };
 
-  // const series_data = []
-
-  // for (let i = 0; i < tfr?.labels.length; i++) {
-  //   const series_element = {
-  //     name : tfr?.labels[i],
-  //     data : tfr?.data[i]
-  //   }
-
-  //   series_data.push(series_element)
-    
-  // }
-
-  // const heatmapOptions = {
-  //   chart: {
-  //     type: tfr?.type
-  //   },
-  //   series: series_data,
-  //   colors: ["#1652f0"],
-  //   title: {
-  //     text: 'Terms frequency over years quarters'
-  //   },
-  // };
 
   //console.log( "treemap"+ JSON.stringify(eight?.data[0].data))
 
@@ -331,22 +308,7 @@ console.log("here" + JSON.stringify(tfr?.x))
   //   //Financials
   //     // eslint-disable-next-line react/jsx-key
   //     <div className='flex flex-wrap justify-between h-[100%] w-[100%]'>
-  //       
-  //       <div className='bg-white w-[100%] mt-4'>
-  //     <ApexCharts options={treemapOptions} series={treemapOptions.series} type='treemap' /> 
-  //     </div>
-
-  //     <div className='bg-white w-[100%] mt-4'>
-  //     <ApexCharts options={AvrgOpIncOptions} series={AvrgOpIncOptions.series} type='treemap' /> 
-  //     </div>
-
-  //     <div className='bg-white w-[100%] mt-4'>
-  //     <ApexCharts options={AvrgGrssPrftOptions} series={AvrgGrssPrftOptions.series} type='treemap' /> 
-  //     </div>
-      
-  //     {/* <div className='bg-blue-400 mt-4'>
-  //     <ApexChart options={radialTwoOptions} series={radialTwoOptions.series} type={radialTwoOptions.chart.type} /> 
-  //     </div>
+  //      
 
   //     <div className='bg-blue-400 mt-4'>
   //     <ApexChart options={radialTwoOptions} series={radialTwoOptions.series} type={radialTwoOptions.chart.type} /> 
@@ -365,25 +327,14 @@ console.log("here" + JSON.stringify(tfr?.x))
   //     </div>
   //     </div>
 
-  //     <div className='w-[100%] flex justify-center'>
-  //     <div className='bg-white w-[70%] rounded-lg p-3 mt-4'>
-  //     <ApexCharts options={heatmapOptions} series={heatmapOptions.series} type={heatmapOptions.chart.type} />
-  //     </div>
-  //     </div>
-
-  //       {/* <div className='bg-white mt-4'>
-  //     <ApexChart options={options} series={options.series} type={options.chart.type} /> 
-  //     </div> */}
-  //     </div>
+  //     
   // ]
 
   const Tabs = [
     <div className='w-[100%] grid grid-cols-2 gap-3'>
-      <div className='col-span-2 flex flex-col items-center bg-white py-10 rounded-md shadow-md'>
-        <div className='w-[15%]'>
-        {/* <Term data={list} setTerm={setTerm} term={term} /> */}
-        </div>
-       <MainCard data={eleven} dropdata={list} />
+      <div className='col-span-2 flex flex-col items-center bg-white rounded-md shadow-md'>
+  
+       <MainCard data={list} />
         
       </div>
     <BarChart bardata={tfo} title="Top Five terms by Revenue" />

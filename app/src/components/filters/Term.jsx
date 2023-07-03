@@ -1,49 +1,28 @@
-/* eslint-disable no-extra-semi */
+/* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-key */
 /* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
-import { useState, useEffect} from 'react'
+import React, { useState } from 'react';
 
-
-function Term({ term, setTerm, data }) {
-    const [list, setList] = useState(['list'])
-    
+function Term({ data, term, setTerm }) {
   
 
-    function handleTagSelection(tag) {
-        setTerm(tag)
-      };
-  
-    
-    // const handleClick = () => {
-    //   const value = 'Example Value'; // The value to be pushed
-    //   onValueChange(value);
-    // };
-
-    
-    if (typeof selectedTags === 'undefined') {
-      // Handle the case where selectedTags is undefined
-      return null; // or render a fallback UI
-    }
-    
+  // Function to handle the selection change
+  const handleTermChange = (event) => {
+    setTerm(event.target.value);
+  };
 
   return (
-    <div className='flex flex-wrap '>
-    {/* Render the selected tags */}
-    
-    {/* Render the dropdown */}
-    <select className='bg-[#051131] w-[100%] rounded-xl text-white' onChange={(event) => handleTagSelection(event.target.value)}>
-      {/* map of the dropdown list */}
-      <option disabled={term === `All`} value={`All`}>All Terms</option>
-      {data?.Terms.map((item, index) => (
-        <option disabled={term === `${item}`} value={`${item}`}>{item}</option>
+    <div>
+      <select className='bg-[#051131] w-[18%] rounded-xl text-white' value={term} onChange={handleTermChange}>
+        {/* map of the dropdown list */}
+        <option value={`All`}>All Term</option>
+        {/* Add more options as needed */}
+        {data?.Terms.map((item, index) => (
+        <option disabled={term === item} value={`${item}`}>{item}</option>
       ))}
-      {/* Add more options as needed */}
-    </select>
-   
-    
-  </div>
-  )
+      </select>
+    </div>
+  );
 }
 
-export default Term
+export default Term;

@@ -40,7 +40,7 @@ function Terms({ country, setCountry, data, selectedTags, setSelectedTags }) {
     
 
   return (
-    <div className='flex flex-wrap '>
+    <div className='flex flex-wrap text-black'>
     {/* Render the selected tags */}
     
     {/* Render the dropdown */}
