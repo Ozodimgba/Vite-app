@@ -13,9 +13,9 @@ function Term({ data, term, setTerm }) {
 
   return (
     <div>
-      <select className='bg-[#051131] w-[18%] rounded-xl text-white' value={term} onChange={handleTermChange}>
+      <select className='bg-white border-[#051131] px-2 border-[2px] w-[18%] rounded-xl text-[#051131]' value={term} onChange={handleTermChange}>
         {/* map of the dropdown list */}
-        <option value={`All`}>All Term</option>
+        <option value={`All`}>All Terms</option>
         {/* Add more options as needed */}
         {data?.Terms.map((item, index) => (
         <option disabled={term === item} value={`${item}`}>{item}</option>

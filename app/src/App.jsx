@@ -42,6 +42,7 @@ export default function Home() {
   const [companies, setCompanies] = useState(['All'])
   const [selectedTags, setSelectedTags] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [yearRange, setYearRange] = useState([2012, 2022]);
   const [sectors, setSectors] = useState(['All'])
   const [terms, setTerms] = useState(['All'])
   const [list, setList] = useState(null)
@@ -84,8 +85,8 @@ export default function Home() {
   const divRef = useRef(null);
 
   const payload = {
-    "from_year": 2012,
-    "to_year": 2019,
+    "from_year": yearRange[0],
+    "to_year": yearRange[1],
     "regions": regions,
     "countries": country,
     "companies": companies,
@@ -450,7 +451,7 @@ const My_Component4 = <MdOutlineAttachMoney color='white' />
       <h1>Sectors: {sectors}</h1>
       <h1>Companies: {companies}</h1> */}
       <div className='w-[100%] py-1'>
-        <YearRange />
+        <YearRange yearRange={yearRange} setYearRange={setYearRange} />
       </div>
     <div className='flex gap-2 border-white rounded-full bg-[#051131] mt-4 py-2 px-2'>
      <Fliter data={list} setSelectedTags={setSelectedTags} selectedTags={selectedTags} setRegions={setRegions} regions={regions} />

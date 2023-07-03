@@ -9,7 +9,11 @@ import axios from "axios";
 const MainCard = ({ data }) => {
   const [ isLoading, setIsLoading ] = useState(true)
   const [term, setTerm] = useState('Cloud')
-  const [cardData, setCardData] = useState(null)
+  const [cardData, setCardData] = useState({ 
+    "Average Revenue": 0,
+    "Average Revenue Cost": 0,
+    "Average Operating Income": 0
+  })
   
     if (!data) {
       return null; // or render a fallback component/error message
@@ -86,15 +90,16 @@ const MainCard = ({ data }) => {
     };
   
     return (
-      <div className="p-4 px-10 w-[100%] flex flex-col justify-between">
+      <div className="p-4 w-[100%] flex flex-col justify-between">
         <Term data={data} term={term} setTerm={setTerm} />
 
-        <div className="flex flex-row justify-between">
+        <div className="flex flex-row w-[100%] px-10 pb-4 mt-6 justify-between">
         <div className="flex flex-col items-center justify-between">
           <div className="flex items-center">
           <span>Average Revenue</span>
         
           </div>
+          {/* {isLoading? <div>Loading</h1> : } */}
           <span className='font-bold text-2xl'>{formatNumber(AvrgRev)}</span>
         </div>
   
