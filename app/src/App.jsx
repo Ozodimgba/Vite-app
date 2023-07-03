@@ -129,6 +129,7 @@ export default function Home() {
           const url17 = 'https://data-value-tool.up.railway.app/average-operating-income-variation-over-quarters-and-years';
           const url18 = 'https://data-value-tool.up.railway.app/average-gross-profit-variation-over-quarters-and-years';
           const url19 = 'https://data-value-tool.up.railway.app/average-financials-for-individual-terms';
+          const url20 = 'https://data-value-tool.up.railway.app/average-financials-for-individual-terms';
 
       
           try {
@@ -185,7 +186,7 @@ export default function Home() {
         fetchData();
       }, [payload]);
 
-console.log("here" + JSON.stringify(five))
+console.log("here" + JSON.stringify(tfr?.x))
 
 
   //Barcharts Main page
@@ -407,7 +408,7 @@ console.log("here" + JSON.stringify(five))
     
     </div>,
     <div className='w-[100%] gap-6 flex flex-col items-center justify-center'>
-      <HeatmapChart />
+      <HeatmapChart heatdata={tfr} />
       <div className='bg-[#141414] px-2 flex text-center rounded-lg'>
       <Cloud />
       </div>

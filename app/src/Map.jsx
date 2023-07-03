@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 import { CustomMap } from "@jadesrochers/geomap";
 import { useEffect, useState } from "react";
 import { geoEqualEarth } from "d3-geo";
 import * as R from "ramda";
+import axios from 'axios';
 
 const projectEqualEarth = scale =>
   geoEqualEarth()
@@ -11,6 +13,7 @@ const projectEqualEarth = scale =>
 const useLoadMap = path => {
   const [geodata, setgeodata] = useState(undefined);
   useEffect(() => {
+    
     const datagetter = async () => {
       let rawgeo = await fetch(path);
       rawgeo = await rawgeo.json();
@@ -28,6 +31,7 @@ const useLoadMap = path => {
 //const GnYlRd73 = ['#1652f0', '#ffff00', '#1652f0', '#1652f0', '#addd8e', '#d9f0a3', '#ffffcc', '#ffeda0', '#feb24c', '#f03b20'];
 // The ToolTipMap must contain the custom map to get data tooltip support.
 const WorldMap = props => {
+  const [response, setResponse] = useState(null);
   const path =
     "https://raw.githubusercontent.com/jadesrochers/geomap/master/src/__tests__/worldmap110m.json";
   let worldgeo = useLoadMap(path);
@@ -44,6 +48,19 @@ const WorldMap = props => {
   });
   let data = R.mergeAll(randdata);
   console.log(data)
+  
+  const payload = {
+    "from_year": 2012,
+    "to_year": 2019,
+    "regions": ["All"],
+    "countries": ["All"],
+    "companies": ["All"],
+    "sectors": ["All"],
+    "terms": ["All"]
+  }
+  
+
+  console.log(JSON.stringify(response))
   return (
     <CustomMap
       projection={projectEqualEarth}

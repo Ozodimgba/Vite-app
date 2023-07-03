@@ -1,43 +1,63 @@
-import { TagCloud } from 'react-tagcloud'
+import { useState, useEffect } from 'react';
+import { TagCloud } from 'react-tagcloud';
+import axios from 'axios';
 
-const data = [
-  { value: 'jQuery', count: 25 },
-  { value: 'MongoDB', count: 18 },
-  { value: 'JavaScript', count: 38 },
-  { value: 'React', count: 30 },
-  { value: 'Nodejs', count: 28 },
-  { value: 'Express.js', count: 50 },
-  { value: 'HTML5', count: 33 },
-  { value: 'CSS3', count: 20 },
-  { value: 'Webpack', count: 22 },
-  { value: 'Babel.js', count: 7 },
-  { value: 'ECMAScript', count: 25 },
-  { value: 'Jest', count: 15 },
-  { value: 'Mocha', count: 17 },
-  { value: 'React Native', count: 27 },
-  { value: 'Angular.js', count: 30 },
-  { value: 'TypeScript', count: 15 },
-  { value: 'Flow', count: 30 },
-  { value: 'NPM', count: 11 },
-]
+const Cloud = () => {
+  const [tagData, setTagData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-/* CSS:
-.simple-cloud .tag-cloud-tag {
-  cursor: pointer;
-}
-*/
+ 
 
-// minSize, maxSize - font size in px
-// tags - array of objects with properties value and count
-// shuffle - indicates if data should be shuffled (true by default)
-// onClick event handler has `tag` and `event` parameter
-export default function Cloud () {
-return(
-  <TagCloud
-    minSize={12}
-    maxSize={35}
-    tags={data}
-    className="simple-cloud"
-    onClick={(tag) => alert(`'${tag.value}' was selected!`)}
-  />
-)}
+  useEffect(() => {
+    // Simulating an API call to fetch data
+    const fetchData = async () => {
+      const payload = {
+        "from_year": 2012,
+        "to_year": 2019,
+        "regions": ["All"],
+        "countries": ["All"],
+        "companies": ["All"],
+        "sectors": ["All"],
+        "terms": ["All"]
+      }
+      try {
+        // Set isLoading to true to show the loading state
+        setIsLoading(true);
+
+        // Make the actual API call to fetch the dynamic data
+        const response = await axios.post('https://data-value-tool.up.railway.app/terms-frequencies-count-for-wordcloud-and-table', payload);
+        const data = JSON.parse(response.data);
+
+    
+
+        // Update the state with the fetched data
+        setTagData(data.data);
+        
+        // Set isLoading to false to hide the loading state
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Error fetching tag cloud data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  return (
+    <div>
+      {isLoading ? (
+        <div className='text-white'>Loading...</div> // Show a loading state
+      ) : (
+        <TagCloud
+          minSize={12}
+          maxSize={35}
+          tags={tagData}
+          className="simple-cloud"
+          onClick={(tag) => alert(`'${tag.value}' was selected!`)}
+        />
+      )}
+    </div>
+  );
+};
+
+export default Cloud;
