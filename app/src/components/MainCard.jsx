@@ -1,8 +1,6 @@
 /* eslint-disable react/prop-types */
-import { useEffect } from "react";
-import Terms from "./filters/Terms";
 
-const MainCard = ({ data, dropdata }) => {
+const MainCard = ({ data }) => {
 
     if (!data) {
       return null; // or render a fallback component/error message
@@ -41,12 +39,8 @@ const MainCard = ({ data, dropdata }) => {
     };
   
     return (
-      <div className="p-4 px-10 w-[100%] flex justify-between bg-white py-10 rounded-md shadow-md">
-        <div className="text-black bg-black">
-        
-        <Terms data={dropdata} />
-        </div>
-        <div className="flex flex-col items-center justify-between mb-4">
+      <div className="p-4 px-10 w-[100%] flex justify-between">
+        <div className="flex flex-col items-center justify-between">
           <div className="flex items-center">
           <span>Average Revenue</span>
         
@@ -54,13 +48,13 @@ const MainCard = ({ data, dropdata }) => {
           <span className='font-bold text-2xl'>{formatNumber(AvrgRev)}</span>
         </div>
   
-        <div className="flex flex-col items-center justify-between mb-4">
+        <div className="flex flex-col items-center justify-between">
           <div className="flex items-center">
             <span>Average Revenue Cost</span>
           </div>
           <span className='font-bold text-2xl'>{formatNumber(AvrgRevCost)}</span>
         </div>
-        <div className="flex flex-col items-center justify-between mb-4">
+        <div className="flex flex-col items-center justify-between">
           <span>Average Operating Income</span>
           <span className='font-bold text-2xl'>{formatNumber(AvrgOprInc)}</span>
         </div>

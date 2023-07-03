@@ -6,9 +6,11 @@ const TreeMapChart = () => {
   const data = [
     {
       type: 'treemap',
-      labels: ['A', 'B', 'C', 'D'],
-      parents: ['', '', 'A', 'A'],
-      values: [8, 6, 4, 2],
+      labels: ['A', 'B', 'C', 'D', 'E'],
+      parents: ['', '', '', 'A', 'A'],
+      values: [10, 20, 15, 7, 18],
+      text: ['A', 'B', 'C', 'D', 'E'],
+      hovertemplate: '%{label}<br>Value: %{value}<extra></extra>'
     },
   ];
 

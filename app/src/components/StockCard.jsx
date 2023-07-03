@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-const StockCard = ({ data }) => {
+const StockCard = ({ data, loading }) => {
 
   if (!data) {
     return null; // or render a fallback component/error message
@@ -49,6 +49,7 @@ const StockCard = ({ data }) => {
         <span>Three Days Before</span>
           <span className={`text-xl mr-2 ${beforeColor}`}>{beforeArrow}</span>
         </div>
+        { loading? <></> : <></>}
         <span className='font-bold text-2xl'>{formatNumberWithTwoDecimals(beforeChange)}</span>
       </div>
 
