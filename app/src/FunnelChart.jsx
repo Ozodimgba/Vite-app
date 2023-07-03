@@ -1,23 +1,16 @@
+/* eslint-disable react/prop-types */
 
 import Plot from 'react-plotly.js';
 
-const FunnelChart = () => {
-  const data = [
-    {
-      type: 'funnel',
-      y: ['Step 1', 'Step 2', 'Step 3', 'Step 4'],
-      x: [100, 60, 40, 20],
-      textposition: 'inside',
-      marker: {
-        colors: ['#FFA500', '#FFC0CB', '#ADD8E6', '#90EE90'],
-      },
-    },
-  ];
+const FunnelChart = ({ funneldata }) => {
+  const data = funneldata?.data;
 
   const layout = {
+    margin: {l: 200, r: 0},
     title: 'Funnel Chart',
     height: 400,
-    width: 600,
+    width: 700,
+    showlegend: 'true'
   };
 
   return <Plot data={data} layout={layout} />;

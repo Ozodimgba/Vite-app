@@ -185,7 +185,7 @@ export default function Home() {
         fetchData();
       }, [payload]);
 
-console.log("here" + JSON.stringify(eight))
+console.log("here" + JSON.stringify(five))
 
 
   //Barcharts Main page
@@ -392,10 +392,10 @@ console.log("here" + JSON.stringify(eight))
     <BarChart bardata={three} title='Top Five terms by operating income' />
     <BarChart bardata={four} title='Bottom Five terms by operating income' />
     <div className='col-span-2 w-[100%] flex justify-center'>
-    <FunnelChart />
+    <FunnelChart funneldata={five} />
     </div>
     <div className='col-span-2 w-[100%] flex justify-center'>
-    <FunnelChart />
+    <FunnelChart funneldata={six} />
     </div>
     </div>,
 
