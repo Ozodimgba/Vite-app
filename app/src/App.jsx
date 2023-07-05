@@ -63,8 +63,8 @@ export default function Home() {
   const [eleven, setEleven] = useState(null)
   const [card, setCard] = useState(null);
   const [open, setOpen] = useState(false)
-  const [cardtwo, setCardtwo] = useState(null)
-  const [cardthree, setCardthree] = useState(null)
+  const [cardtwo, setCardtwo] = useState([])
+  const [cardthree, setCardthree] = useState([])
   const [drop, setDrop] = useState([
     {
       name: "North America"
@@ -331,6 +331,11 @@ console.log("here" + JSON.stringify(terms))
   //     
   // ]
 
+const My_Component = <MdOutlineAccountBalance color='white' />
+const My_Component2 = <BiFlag color='white' />
+const My_Component3 = <BiSolidCircleThreeQuarter color='white' />
+const My_Component4 = <MdOutlineAttachMoney color='white' />
+
   const Tabs = [
     <div className='w-[100%] grid grid-cols-2 gap-3'>
       <div className='col-span-2 flex flex-col items-center bg-white rounded-md shadow-md'>
@@ -354,6 +359,17 @@ console.log("here" + JSON.stringify(terms))
 
     <div className='w-[100%] gap-6 flex flex-col items-center justify-center'>
     <StockCard data={seven} loading={loading} />
+
+    <div className='grid grid-cols-3 relative gap-6 mt-4'>
+    <Card title="Total Revenue Across Companies" color="bg-purple-600" icon={My_Component4} number={cardtwo["Total Revenue"]} duration={3000} />
+    <Card title="Total Operating Income Across Companies" color="bg-red-400" icon={My_Component4} number={cardtwo["Total Operating Income"]} duration={3000} />
+    <Card title="Total Gross Profit Across Companies" color="bg-green-400" icon={My_Component4} number={cardtwo["Total Gross Profit"]} duration={3000} /> 
+
+    <Card title="Average Revenue Across Companies" color="bg-orange-500"  icon={My_Component4} number={cardthree["Average Revenue"]} duration={3000} />
+    <Card title="Average Operating Income Across Companies" color="bg-purple-600"  icon={My_Component4} number={cardthree["Average Operating Income"]} duration={3000} />
+    <Card title="Average Gross Profit Across Companies" color="bg-blue-800" icon={My_Component4} number={cardthree["Average Gross Profit"]} duration={3000} /> 
+    </div>
+    
     <TreeMapChart treedata={eight} />
     <TreeMapChart />
     <TreeMapChart />
@@ -380,11 +396,6 @@ function removeTag(tag) {
   setCountry((prevCountries) => prevCountries.filter((countrys) => countrys !== tag));
   setSelectedTags(updatedTags);
 }
-
-const My_Component = <MdOutlineAccountBalance color='white' />
-const My_Component2 = <BiFlag color='white' />
-const My_Component3 = <BiSolidCircleThreeQuarter color='white' />
-const My_Component4 = <MdOutlineAttachMoney color='white' />
 
 
   if (isLoading) {
@@ -418,15 +429,15 @@ const My_Component4 = <MdOutlineAttachMoney color='white' />
       </div>
       <>
       <div className='w-[100%] mt-2 flex'>
-      <button onClick={() => setCurrentIndex(0)} className='w-[98%] py-2 rounded-sm flex justify-start px-3  cursor-pointer text-[#051131]'><h1>Main dashboard</h1></button>
+      <button onClick={() => setCurrentIndex(0)} className={`w-[98%] py-2 rounded-sm flex justify-start px-3  cursor-pointer text-[#051131] ${ currentIndex === 0? 'font-bold' : 'font-normal'}`}><h1>Main dashboard</h1></button>
       <div className={`w-[2%] rounded-sm ${ currentIndex === 0? 'bg-[#051131]' : 'bg-white'} `}></div>
       </div>
       <div className='w-[100%] mt-2 flex'>
-      <button onClick={() => setCurrentIndex(1)} className='w-[98%] py-2 rounded-sm flex justify-start px-3  cursor-pointer text-[#051131]'><h1>Financial Visualization</h1></button>
+      <button onClick={() => setCurrentIndex(1)} className='w-[98%] py-2 rounded-sm flex justify-start px-3  cursor-pointer text-[#051131] focus:font-bold'><h1>Financial Visualization</h1></button>
       <div className={`w-[2%] rounded-sm ${ currentIndex === 1? 'bg-[#051131]' : 'bg-white'} `}></div>
       </div>
       <div className='w-[100%] mt-2 flex'>
-      <button onClick={() => setCurrentIndex(2)} className='w-[98%] py-2 rounded-sm flex justify-start px-3  cursor-pointer text-[#051131]'><h1>Terms Visualization</h1></button>
+      <button onClick={() => setCurrentIndex(2)} className='w-[98%] py-2 rounded-sm flex justify-start px-3  cursor-pointer text-[#051131] focus:font-bold'><h1>Terms Visualization</h1></button>
       <div className={`w-[2%] rounded-sm ${ currentIndex === 2? 'bg-[#051131]' : 'bg-white'} `}></div>
       </div>
    
@@ -434,7 +445,8 @@ const My_Component4 = <MdOutlineAttachMoney color='white' />
 
      </div>
      
-     <div className='w-[80%] h-[100%] px-5 text-black py-5 flex flex-col items-center'>
+     <div className='w-[80%] h-[100%] px-5 text-black py-5 flex flex-col items-end'>
+      <div className='w-full z-50 bg-[#e3edf7] pb-3 h-full sticky top-0 right-0'>
       <div className='w-[100%] flex flex-row justify-between items-center'>
       <div className='w-[30%] flex flex-col py-3'>
       <h1 className='text-[0.8rem]'>Pages / { currentIndex === 1 && "Financial Visualization" } { currentIndex === 0 && "Main Dashboard" } { currentIndex === 2 && "Terms Visualization" }</h1>
@@ -461,33 +473,22 @@ const My_Component4 = <MdOutlineAttachMoney color='white' />
      <Terms data={list} setSelectedTags={setSelectedTags} selectedTags={selectedTags} setCountry={setTerms} country={terms} />
      <Sectors data={list} setSelectedTags={setSelectedTags} selectedTags={selectedTags} setCountry={setSectors} country={sectors} />
      </div>
+     </div>
      <div className='flex flex-wrap mt-2 w-[100%] gap-2'>
       {selectedTags.map((tag, index) => (
         <div className='cursor-pointer border-[#051131] text-[#051131] px-4 rounded-full border-[2px]' key={index}>{tag} <button onClick={() => removeTag(tag)}>x</button></div>
       ))}
     </div>
 
-    <div className='grid grid-cols-3 relative gap-6 mt-4'>
+    <div className='grid grid-cols-3 w-[100%] relative gap-6 mt-4'>
     <Card title="Companies Present Based On Filters" color="bg-blue-800" icon={My_Component} number={card["Companies Present"]} duration={3000} />
     <Card title="Countries Present Based On Filters" color="bg-purple-600" icon={My_Component2} number={card["Countries Present"]} duration={3000} />
     <Card title="Sectors Present Based On Filters" color="bg-orange-500" icon={My_Component3} number={card["Sectors Present"]} duration={3000} />
-
-    <Card title="Total Revenue Across Companies" color="bg-purple-600" icon={My_Component4} number={cardtwo["Total Revenue"]} duration={3000} />
-    <Card title="Total Operating Income Across Companies" color="bg-red-400" icon={My_Component4} number={cardtwo["Total Operating Income"]} duration={3000} />
-    <Card title="Total Gross Profit Across Companies" color="bg-green-400" icon={My_Component4} number={cardtwo["Total Gross Profit"]} duration={3000} /> 
-
-    <Card title="Average Revenue Across Companies" color="bg-orange-500"  icon={My_Component4} number={cardthree["Average Revenue"]} duration={3000} />
-    <Card title="Average Operating Income Across Companies" color="bg-purple-600"  icon={My_Component4} number={cardthree["Average Operating Income"]} duration={3000} />
-    <Card title="Average Gross Profit Across Companies" color="bg-blue-800" icon={My_Component4} number={cardthree["Average Gross Profit"]} duration={3000} /> 
     </div>
       
 
-     
-
-     
-
      <div className=' h-[100%]  px-10 w-[100%] gap-2'>
-     <h1 className='text-xl py-3 text-[#1b254b] font-bold'>Visualization</h1>
+     <h1 className='text-xl py-3 text-[#1b254b] font-bold'>{ currentIndex === 1 && "Financial Visualization" } { currentIndex === 0 && "Main Dashboard" } { currentIndex === 2 && "Terms Visualization" }</h1>
      {Tabs[currentIndex]}
      
      </div>

@@ -17,10 +17,11 @@ export default function YearRange ({ yearRange, setYearRange}){
     <Slider range 
     min={2012} 
     max={2022}
-    tipProps={{
-      className: 'bg-blue-500 text-white',
-    }}
     defaultValue={yearRange}
+    reverse={false}
+    tipProps={{
+      className: 'bg-blue-600 text-white',
+    }}
     onChange={handleYearChange} 
     marks={{
           2012: '2012',
