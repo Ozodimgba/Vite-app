@@ -9,7 +9,7 @@ import { BiFlag, BiSolidCircleThreeQuarter } from 'react-icons/bi'
 import { MdOutlineAttachMoney } from 'react-icons/md'
 import TreeMapChart from './Treemap';
 import FunnelChart from './FunnelChart';
-import { WorldMap } from './Map';
+import Map from './Map';
 import Cloud from './Word';
 
 import MainCard from './components/MainCard';
@@ -186,7 +186,7 @@ export default function Home() {
         fetchData();
       }, [payload]);
 
-console.log("here" + JSON.stringify(tfr?.x))
+console.log("here" + JSON.stringify(terms))
 
 
   //Barcharts Main page
@@ -361,13 +361,13 @@ console.log("here" + JSON.stringify(tfr?.x))
     </div>,
     <div className='w-[100%] gap-6 flex flex-col items-center justify-center'>
       <HeatmapChart heatdata={tfr} />
+
+      <Map />
       <div className='bg-[#141414] px-2 flex text-center rounded-lg'>
       <Cloud />
       </div>
      
-     <div className='col-span-2 w-[80%]'>
-     <WorldMap />
-     </div>
+      
     </div>
   ]
 
