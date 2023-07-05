@@ -51,14 +51,14 @@ function Map() {
       <ResponsiveChoropleth
         data={data}
         features={countries.features}
-        colors="nivo"
+        colors="blues"
+        enableGraticule={false}
         unknownColor="#666666"
         label="properties.name"
         valueFormat=".2s"
         domain={[0, 0]}
         projectionTranslation={[0.5, 0.5]}
-        enableGraticule={true}
-        graticuleLineColor="#dddddd"
+        graticuleLineColor="#ffffff"
         borderWidth={0.5}
         borderColor="#152538"
         legends={[
