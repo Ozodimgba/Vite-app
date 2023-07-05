@@ -448,13 +448,13 @@ function removeTag(tag) {
      </div>
      
      <div className='w-[80%] h-[100%] px-5 text-black py-5 flex flex-col items-end'>
-      <div className='w-full z-50 bg-[#e3edf7] pb-3 h-full sticky top-0 right-0'>
+      <div className='w-full z-40 bg-[#e3edf7] pb-3 h-full sticky top-0 right-0'>
       <div className='w-[100%] flex flex-row justify-between items-center'>
       <div className='w-[30%] flex flex-col py-3'>
       <h1 className='text-[0.8rem]'>Pages / { currentIndex === 1 && "Financial Visualization" } { currentIndex === 0 && "Main Dashboard" } { currentIndex === 2 && "Terms Visualization" }</h1>
       <h1 className='text-3xl text-[#1b254b] font-bold'>Earning Explorer</h1>
       </div>
-      <div className='w-[50%] pt-[2%] pr-5 h-full'>
+      <div className='w-[50%] z-50 pt-[2%] pr-5 h-full'>
         <Query />
       </div>
       </div>

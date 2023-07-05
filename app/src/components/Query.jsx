@@ -10,14 +10,16 @@ function Query() {
 
   const handleQueryChange = (e) => {
     setQuery(e.target.value);
+    
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+    sendQuery();
   };
 
   const sendQuery = async () => {
+    
     try {
       const response = await axios.post(
         'https://data-value-tool.up.railway.app/chatbot-query',

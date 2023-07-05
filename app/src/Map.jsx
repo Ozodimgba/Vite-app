@@ -1,26 +1,54 @@
-/* eslint-disable react/jsx-no-undef */
-/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React from 'react'
-import { ResponsiveChoropleth } from '@nivo/geo'
-import { ResponsiveGeoMap } from "@nivo/geo";
-import { ResponsiveGeoMapCanvas } from "@nivo/geo";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { ResponsiveChoropleth } from "@nivo/geo";
 import countries from "./world_countries.json";
-//import data from './utils/data.js';
-
 
 function Map() {
-  const data = [
-    { id: 'USA', value: 150 },
-    { id: 'CAN', value: 200 },
-    { id: 'MEX', value: 75 },
-    { id: 'ATA', value: 875 },
-    { id: 'NGA', value: 875 }
-    // Add more data objects for other regions as needed
-  ];
+  const [isLoading, setIsLoading] = useState(true);
+  const [data, setData] = useState();
 
-  return (<div className='w-[73%] p-4 h-[500px] overflow bg-white rounded-xl'>
-    <ResponsiveChoropleth
+  const payload = {
+      "from_year": 2012,
+      "to_year": 2022,
+      "regions": ["All"],
+      "countries": ["All"],
+      "companies": ["All"],
+      "sectors": ["All"],
+      "terms": ["All"],
+  };
+
+  const fetchData = async () => {
+    try {
+      setIsLoading(true);
+
+      const response = await axios.post(
+        "https://data-value-tool.up.railway.app/frequencies-by-countries",
+        payload
+      );
+      const responseData = JSON.parse(response.data);
+      setData(responseData.data);
+      
+      setIsLoading(false);
+    } catch (error) {
+      console.error("Error fetching map data:", error);
+    }
+  };
+
+  console.log(JSON.stringify(data))
+
+  useEffect(() => {
+    fetchData();
+  }, [payload]);
+
+
+  if (!data) {
+    return null; // or render a fallback component/error message
+  }
+
+  return (
+    <div className="w-[73%] p-4 h-[500px] overflow bg-white rounded-xl">
+      <ResponsiveChoropleth
         data={data}
         features={countries.features}
         colors="nivo"
@@ -52,15 +80,15 @@ function Map() {
                 on: "hover",
                 style: {
                   itemTextColor: "#000000",
-                  itemOpacity: 1
-                }
-              }
-            ]
-          }
+                  itemOpacity: 1,
+                },
+              },
+            ],
+          },
         ]}
       />
     </div>
-  )
+  );
 }
 
-export default Map
+export default Map;
