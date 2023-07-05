@@ -343,12 +343,12 @@ const My_Component4 = <MdOutlineAttachMoney color='white' />
        <MainCard data={list} />
         
       </div>
-    <BarChart bardata={tfo} title="Top Five terms by Revenue" />
-    <BarChart bardata={btr} title="Bottom Five terms by Revenue" />
-    <BarChart bardata={one} title="Top Five terms by cost of revenue" />
-    <BarChart bardata={two} title='Bottom Five terms by cost of revenue' />
-    <BarChart bardata={three} title='Top Five terms by operating income' />
-    <BarChart bardata={four} title='Bottom Five terms by operating income' />
+    <BarChart bardata={tfo} yLabel="Revenue" title="Top Five terms by Revenue" />
+    <BarChart bardata={btr} yLabel="Revenue" title="Bottom Five terms by Revenue" />
+    <BarChart bardata={one} yLabel="Cost of revenue" title="Top Five terms by cost of revenue" />
+    <BarChart bardata={two} yLabel="Cost of revenue" title='Bottom Five terms by cost of revenue' />
+    <BarChart bardata={three} yLabel="Operating Income" title='Top Five terms by operating income' />
+    <BarChart bardata={four} yLabel="Operating Income" title='Bottom Five terms by operating income' />
     <div className='col-span-2 w-[100%] flex justify-center'>
     <FunnelChart funneldata={five} />
     </div>
@@ -423,8 +423,10 @@ function removeTag(tag) {
      </Head>  */}
      {/* <Fliter /> */}
      <div className='bg-white flex py-8 flex-col text-white sticky top-0 left-0 h-[100vh] px-2 w-[20%]'>
-      <div className='border-[#1b254b] border-b-2 py-5 mx-3 flex'>
-      <h1 className='font-bold text-[#1b254b] text-xl'>Earning Explorer</h1>
+      <div className='flex flex-col border-[#1b254b] pb-4 border-b-2 mx-3'>
+      <div className='w-[70%]'>
+      <img src='logo.png' />
+      </div>
       
       </div>
       <>
@@ -433,11 +435,11 @@ function removeTag(tag) {
       <div className={`w-[2%] rounded-sm ${ currentIndex === 0? 'bg-[#051131]' : 'bg-white'} `}></div>
       </div>
       <div className='w-[100%] mt-2 flex'>
-      <button onClick={() => setCurrentIndex(1)} className='w-[98%] py-2 rounded-sm flex justify-start px-3  cursor-pointer text-[#051131] focus:font-bold'><h1>Financial Visualization</h1></button>
+      <button onClick={() => setCurrentIndex(1)} className={`w-[98%] py-2 rounded-sm flex justify-start px-3  cursor-pointer text-[#051131] ${ currentIndex === 1? 'font-bold' : 'font-normal'}`}><h1>Financial Visualization</h1></button>
       <div className={`w-[2%] rounded-sm ${ currentIndex === 1? 'bg-[#051131]' : 'bg-white'} `}></div>
       </div>
       <div className='w-[100%] mt-2 flex'>
-      <button onClick={() => setCurrentIndex(2)} className='w-[98%] py-2 rounded-sm flex justify-start px-3  cursor-pointer text-[#051131] focus:font-bold'><h1>Terms Visualization</h1></button>
+      <button onClick={() => setCurrentIndex(2)} className={`w-[98%] py-2 rounded-sm flex justify-start px-3  cursor-pointer text-[#051131] ${ currentIndex === 2? 'font-bold' : 'font-normal'}`}><h1>Terms Visualization</h1></button>
       <div className={`w-[2%] rounded-sm ${ currentIndex === 2? 'bg-[#051131]' : 'bg-white'} `}></div>
       </div>
    
@@ -473,12 +475,13 @@ function removeTag(tag) {
      <Terms data={list} setSelectedTags={setSelectedTags} selectedTags={selectedTags} setCountry={setTerms} country={terms} />
      <Sectors data={list} setSelectedTags={setSelectedTags} selectedTags={selectedTags} setCountry={setSectors} country={sectors} />
      </div>
-     </div>
      <div className='flex flex-wrap mt-2 w-[100%] gap-2'>
       {selectedTags.map((tag, index) => (
         <div className='cursor-pointer border-[#051131] text-[#051131] px-4 rounded-full border-[2px]' key={index}>{tag} <button onClick={() => removeTag(tag)}>x</button></div>
       ))}
     </div>
+     </div>
+     
 
     <div className='grid grid-cols-3 w-[100%] relative gap-6 mt-4'>
     <Card title="Companies Present Based On Filters" color="bg-blue-800" icon={My_Component} number={card["Companies Present"]} duration={3000} />

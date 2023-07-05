@@ -3,7 +3,7 @@
 import React from 'react';
 import Plot from 'react-plotly.js';
 
-const BarChart = ({ bardata, title }) => {
+const BarChart = ({ bardata, title, yLabel }) => {
   const data = [
     {
       x: bardata?.labels,
@@ -27,7 +27,7 @@ const BarChart = ({ bardata, title }) => {
       },
     },
     xaxis: { title: 'Terms', showticklabels: false, },
-    yaxis: { title: 'Revenue' },
+    yaxis: { title: `${yLabel}` },
     bargap: 0.5, // Adjust the gap between bars
     bargroupgap: 0.1,
   };

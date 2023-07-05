@@ -4,7 +4,7 @@ import Plot from 'react-plotly.js';
 
 const FunnelChart = ({ funneldata }) => {
   const data = funneldata?.data;
-
+  console.log(data)
   const layout = {
     margin: {l: 200, r: 0},
     title: 'Funnel Chart',
