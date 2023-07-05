@@ -38,7 +38,7 @@ function Country({ country, setCountry, data, selectedTags, setSelectedTags }) {
     }  
 
   return (
-    <div className='flex flex-wrap'>
+    <div className=''>
     {/* Render the selected tags */}
     
     {/* Render the dropdown */}

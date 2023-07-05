@@ -2,12 +2,12 @@
 
 import Plot from 'react-plotly.js';
 
-const FunnelChart = ({ funneldata }) => {
+const FunnelChart = ({ funneldata, labels }) => {
   const data = funneldata?.data;
   console.log(data)
   const layout = {
     margin: {l: 200, r: 0},
-    title: 'Funnel Chart',
+    title: `${labels}`,
     height: 400,
     width: 700,
     showlegend: 'true'

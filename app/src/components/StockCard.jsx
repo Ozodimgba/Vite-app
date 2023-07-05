@@ -46,7 +46,7 @@ const StockCard = ({ data, loading }) => {
     <div className="p-4 px-10 w-[100%] flex justify-between bg-white py-10 rounded-md shadow-md">
       <div className="flex flex-col items-center justify-between mb-4">
         <div className="flex items-center">
-        <span>Three Days Before</span>
+        <span>Stock Price Three Days Before</span>
           <span className={`text-xl mr-2 ${beforeColor}`}>{beforeArrow}</span>
         </div>
         { loading? <></> : <></>}
@@ -55,7 +55,7 @@ const StockCard = ({ data, loading }) => {
 
       <div className="flex flex-col items-center justify-between mb-4">
         <div className="flex items-center">
-          <span>Three Days After</span>
+          <span>Stock Price Three Days After</span>
           <span className={`text-xl mr-2 ${afterColor}`}>{afterArrow}</span>
         </div>
         <span className='font-bold text-2xl'>{formatNumberWithTwoDecimals(afterChange)}</span>

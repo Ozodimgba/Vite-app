@@ -343,12 +343,12 @@ const My_Component4 = <MdOutlineAttachMoney color='white' />
        <MainCard data={list} />
         
       </div>
-    <BarChart bardata={tfo} yLabel="Revenue" title="Top Five terms by Revenue" />
-    <BarChart bardata={btr} yLabel="Revenue" title="Bottom Five terms by Revenue" />
-    <BarChart bardata={one} yLabel="Cost of revenue" title="Top Five terms by cost of revenue" />
-    <BarChart bardata={two} yLabel="Cost of revenue" title='Bottom Five terms by cost of revenue' />
-    <BarChart bardata={three} yLabel="Operating Income" title='Top Five terms by operating income' />
-    <BarChart bardata={four} yLabel="Operating Income" title='Bottom Five terms by operating income' />
+    <BarChart bardata={tfo} yLabel="Revenue" title="Top Five Terms by Revenue" />
+    <BarChart bardata={btr} yLabel="Revenue" title="Bottom Five Terms by Revenue" />
+    <BarChart bardata={one} yLabel="Cost of Revenue" title="Top Five Terms by Cost of Revenue" />
+    <BarChart bardata={two} yLabel="Cost of Revenue" title='Bottom Five Terms by Cost of Revenue' />
+    <BarChart bardata={three} yLabel="Operating Income" title='Top Five Terms by Operating Income' />
+    <BarChart bardata={four} yLabel="Operating Income" title='Bottom Five Terms by Operating Income' />
     <div className='col-span-2 w-[100%] flex justify-center'>
     <FunnelChart funneldata={five} />
     </div>
@@ -454,7 +454,7 @@ function removeTag(tag) {
       <h1 className='text-[0.8rem]'>Pages / { currentIndex === 1 && "Financial Visualization" } { currentIndex === 0 && "Main Dashboard" } { currentIndex === 2 && "Terms Visualization" }</h1>
       <h1 className='text-3xl text-[#1b254b] font-bold'>Earning Explorer</h1>
       </div>
-      <div className='w-[50%] pt-[2%] pr-5 fixed top-0 right-0 z-50 h-full'>
+      <div className='w-[50%] pt-[2%] pr-5 h-full'>
         <Query />
       </div>
       </div>
