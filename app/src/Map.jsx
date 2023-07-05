@@ -47,7 +47,8 @@ function Map() {
   }
 
   return (
-    <div className="w-[73%] p-4 h-[500px] overflow bg-white rounded-xl">
+    <div className="w-[73%] flex flex-col items-center justify-center p-4 h-[500px] overflow bg-white rounded-xl">
+      <h1>Terms Frequency by Country</h1>
       <ResponsiveChoropleth
         data={data}
         features={countries.features}
