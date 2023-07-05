@@ -19,7 +19,7 @@ const HeatmapChart = ({ heatdata }) => {
   ];
 
   const layout = {
-    title: 'Heatmap Chart',
+    title: 'Frequency of Term Over Years and Quarters',
   };
 
   return <Plot data={data} layout={layout} />;

@@ -50,7 +50,7 @@ const StockCard = ({ data, loading }) => {
           <span className={`text-xl mr-2 ${beforeColor}`}>{beforeArrow}</span>
         </div>
         { loading? <></> : <></>}
-        <span className='font-bold text-2xl'>{formatNumberWithTwoDecimals(beforeChange)}</span>
+        <span className='font-bold text-2xl'>{formatNumberWithTwoDecimals(beforeChange)}%</span>
       </div>
 
       <div className="flex flex-col items-center justify-between mb-4">
@@ -58,7 +58,7 @@ const StockCard = ({ data, loading }) => {
           <span>Stock Price Three Days After</span>
           <span className={`text-xl mr-2 ${afterColor}`}>{afterArrow}</span>
         </div>
-        <span className='font-bold text-2xl'>{formatNumberWithTwoDecimals(afterChange)}</span>
+        <span className='font-bold text-2xl'>{formatNumberWithTwoDecimals(afterChange)}%</span>
       </div>
       <div className="flex flex-col items-center justify-between mb-4">
         <span>Avg Market Cap</span>

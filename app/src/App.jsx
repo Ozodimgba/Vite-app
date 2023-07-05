@@ -350,10 +350,10 @@ const My_Component4 = <MdOutlineAttachMoney color='white' />
     <BarChart bardata={three} yLabel="Operating Income" title='Top Five Terms by Operating Income' />
     <BarChart bardata={four} yLabel="Operating Income" title='Bottom Five Terms by Operating Income' />
     <div className='col-span-2 w-[100%] flex justify-center'>
-    <FunnelChart funneldata={five} />
+    <FunnelChart labels="Top Five Terms and Coresponding financials" funneldata={five} />
     </div>
     <div className='col-span-2 w-[100%] flex justify-center'>
-    <FunnelChart funneldata={six} />
+    <FunnelChart labels="Bottom Five Terms and Coresponding financials" funneldata={six} />
     </div>
     </div>,
 
