@@ -321,7 +321,7 @@ function removeTag(tag) {
       </div>
       <>
       <div className='w-[100%] mt-2 flex'>
-      <button onClick={() => setCurrentIndex(0)} className={`w-[98%] py-2 rounded-sm flex justify-start px-3  cursor-pointer text-[#051131] ${ currentIndex === 0? 'font-bold' : 'font-normal'}`}><h1>Main dashboard</h1></button>
+      <button onClick={() => setCurrentIndex(0)} className={`w-[98%] py-2 rounded-sm flex justify-start px-3  cursor-pointer text-[#051131] ${ currentIndex === 0? 'font-bold' : 'font-normal'}`}><h1>Term-Financial Relationship</h1></button>
       <div className={`w-[2%] rounded-sm ${ currentIndex === 0? 'bg-[#051131]' : 'bg-white'} `}></div>
       </div>
       <div className='w-[100%] mt-2 flex'>
@@ -341,7 +341,7 @@ function removeTag(tag) {
       <div className='w-full z-40 bg-[#e3edf7] pb-3 h-full sticky top-0 right-0'>
       <div className='w-[100%] flex flex-row justify-between items-center'>
       <div className='w-[30%] flex flex-col py-3'>
-      <h1 className='text-[0.8rem]'>Pages / { currentIndex === 1 && "Financial Visualization" } { currentIndex === 0 && "Main Dashboard" } { currentIndex === 2 && "Terms Visualization" }</h1>
+      <h1 className='text-[0.8rem]'>Pages / { currentIndex === 1 && "Financial Visualization" } { currentIndex === 0 && "Term-Financial Relationship" } { currentIndex === 2 && "Terms Visualization" }</h1>
       <h1 className='text-3xl text-[#1b254b] font-bold'>Earning Explorer</h1>
       </div>
       <div className='w-[50%] z-50 pt-[2%] pr-5 h-full'>
@@ -380,7 +380,7 @@ function removeTag(tag) {
       
 
      <div className=' h-[100%]  px-10 w-[100%] gap-2'>
-     <h1 className='text-xl py-3 text-[#1b254b] font-bold'>{ currentIndex === 1 && "Percentage in Change Stock Price and Market Cap" } { currentIndex === 0 && "Main Dashboard" } { currentIndex === 2 && "Terms Visualization" }</h1>
+     <h1 className='text-xl py-3 text-[#1b254b] font-bold'>{ currentIndex === 1 && "Percentage in Change Stock Price and Market Cap" } { currentIndex === 0 && "Term-Financial Relationship" } { currentIndex === 2 && "Terms Visualization" }</h1>
      {Tabs[currentIndex]}
      
      </div>
