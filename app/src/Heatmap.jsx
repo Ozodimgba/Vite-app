@@ -3,6 +3,8 @@ import React, { useRef } from 'react';
 import html2canvas from 'html2canvas';
 import download from 'downloadjs';
 import Plot from 'react-plotly.js';
+import { IoMdDownload } from 'react-icons/io'
+import { AiFillTwitterSquare, AiFillLinkedin } from 'react-icons/ai'
 
 const HeatmapChart = ({ heatdata }) => {
   const data = [
@@ -51,7 +53,7 @@ const HeatmapChart = ({ heatdata }) => {
           const finalImage = overlayCanvas.toDataURL('image/png');
 
           // Trigger the download of the final image
-          download(finalImage, 'div_image_with_overlay.png');
+          download(finalImage, 'chart.png');
         };
       };
     });
@@ -67,9 +69,7 @@ const HeatmapChart = ({ heatdata }) => {
 
         const url = window.URL.createObjectURL(blob);
 
-        const linkedInShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-          url
-        )}`;
+        const linkedInShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=https://dataproducts.io`;
         window.open(linkedInShareUrl, '_blank');
 
         // Clean up the object URL
@@ -97,11 +97,13 @@ const HeatmapChart = ({ heatdata }) => {
     title: 'Frequency of Term Over Years and Quarters',
   };
 
-  return <div ref={divRef} className='flex flex-col w-[80%]'>
+  return <div ref={divRef} className='flex relative bg-white flex-col w-[80%]'>
   <Plot data={data} layout={layout} />
-  <button onClick={handleDownload}>Download</button>
-  <button onClick={handleShareLinkedIn}>Share on LinkedIn</button>
-  <button onClick={handleShareTwitter}>Share on Twitter</button>
+  <div className='absolute top-0 right-0 p-2'>
+  <button onClick={handleShareLinkedIn}><AiFillLinkedin color='1652f0' size={30} /></button>
+  <button onClick={handleShareTwitter}><AiFillTwitterSquare color='1652f0' size={30} /></button>
+  <button onClick={handleDownload}><IoMdDownload color='1652f0' size={30} /></button>
+  </div>
   </div>;
 };
 

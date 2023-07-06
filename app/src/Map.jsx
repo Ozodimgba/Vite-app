@@ -47,7 +47,7 @@ function Map() {
   }
 
   return (
-    <div className="w-[73%] flex flex-col items-center justify-center p-4 h-[500px] overflow bg-white rounded-xl">
+    <div className="w-[73%] flex flex-col items-center justify-center p-4 h-[500px] overflow-hidden bg-white rounded-xl">
       <h1>Terms Frequency by Country</h1>
       <ResponsiveChoropleth
         data={data}
@@ -57,7 +57,7 @@ function Map() {
         unknownColor="#666666"
         label="properties.name"
         valueFormat=".2s"
-        domain={[0, 0]}
+        domain={[0, 100]}
         projectionTranslation={[0.5, 0.5]}
         graticuleLineColor="#ffffff"
         borderWidth={0.5}

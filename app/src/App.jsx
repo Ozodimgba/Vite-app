@@ -186,7 +186,7 @@ export default function Home() {
         fetchData();
       }, [payload]);
 
-console.log("here" + JSON.stringify(terms))
+console.log("here" + JSON.stringify(eight))
 
 
   //Barcharts Main page
@@ -217,119 +217,6 @@ console.log("here" + JSON.stringify(terms))
     },
   };
 
-
-  // const options = {
-  //   chart: {
-  //     type: quarter?.type
-  //   },
-  //   series: [
-  //     {
-  //       name: 'My Dataset',
-  //       data: quarter?.data
-  //     }
-  //   ],
-  //   xaxis: {
-  //     categories: quarter?.labels
-  //   }
-  // };
-
-
-  //console.log( "treemap"+ JSON.stringify(eight?.data[0].data))
-
-  // const treemapOptions = {
-  //   series: [{
-  //     data: eight?.data[0].data
-  //   }],
-  //   options: {
-  //     legend: {
-  //       show: true
-  //     },
-  //     chart: {
-  //       height: 350,
-  //       type: 'treemap'
-  //     },
-  //     title: {
-  //       text: 'Basic Treemap'
-  //     }
-  //   },
-  
-  // };
-
-  // const AvrgOpIncOptions = {
-  //   series: [{
-  //     data: nine?.data[0].data
-  //   }],
-  //   options: {
-  //     legend: {
-  //       show: true
-  //     },
-  //     chart: {
-  //       height: 350,
-  //       type: 'treemap'
-  //     },
-  //     title: {
-  //       text: 'Basic Treemap'
-  //     }
-  //   },
-  
-  // };
-
-  // const AvrgGrssPrftOptions = {
-  //   series: [{
-  //     data: ten?.data[0].data
-  //   }],
-  //   options: {
-  //     legend: {
-  //       show: true
-  //     },
-  //     chart: {
-  //       height: 350,
-  //       type: 'treemap'
-  //     },
-  //     title: {
-  //       text: 'Basic Treemap'
-  //     }
-  //   },
-  
-  // };
-
- 
-  
-    
-    //labels: tfo?.labels,
-
-
-  //duplicate this and rename to radialThreeOptions
-
-
-  //   const Tabs = [
-  //     // eslint-disable-next-line react/jsx-key
-
-    
-  //   //Financials
-  //     // eslint-disable-next-line react/jsx-key
-  //     <div className='flex flex-wrap justify-between h-[100%] w-[100%]'>
-  //      
-
-  //     <div className='bg-blue-400 mt-4'>
-  //     <ApexChart options={radialTwoOptions} series={radialTwoOptions.series} type={radialTwoOptions.chart.type} /> 
-  //     </div> */}
-
-  //     {/* <div className='bg-black mt-4'>
-  //     <ApexChart options={options} series={options.series} type={options.chart.type} /> 
-  //     </div> */}
-  //     </div>,
-
-  //     // eslint-disable-next-line react/jsx-key
-  //     <div className='flex flex-wrap justify-between h-[100%] w-[100%]'>
-  //       <div className='w-[100%] flex justify-center'>
-  //     <div className='bg-white w-[70%] rounded-lg p-3 mt-4'>
-  //     <ApexCharts options={IndvQuarterBarChart} series={IndvQuarterBarChart.series} type='bar' /> 
-  //     </div>
-  //     </div>
-
-  //     
-  // ]
 
 const My_Component = <MdOutlineAccountBalance color='white' />
 const My_Component2 = <BiFlag color='white' />
@@ -376,12 +263,15 @@ const My_Component4 = <MdOutlineAttachMoney color='white' />
     
     </div>,
     <div className='w-[100%] gap-6 flex flex-col items-center justify-center'>
-      <HeatmapChart heatdata={tfr} />
-
-      <Map />
+      <div className='w-[80%]'>
+      <BarChart bardata={quarter} yLabel="Terms count" title='Individual quarterly terms count' />
+      </div>
+       <HeatmapChart heatdata={tfr} />
       <div className='bg-[#141414] px-2 flex text-center rounded-lg'>
       <Cloud />
       </div>
+      <Map />
+      
      
       
     </div>
@@ -469,12 +359,11 @@ function removeTag(tag) {
       </div>
     <div className='flex gap-2 border-white rounded-full bg-[#051131] mt-4 py-2 px-2'>
      <Fliter data={list} setSelectedTags={setSelectedTags} selectedTags={selectedTags} setRegions={setRegions} regions={regions} />
-     
-     <Companies data={list} setSelectedTags={setSelectedTags} selectedTags={selectedTags} setCountry={setCompanies} country={companies} />
      <Country data={list} setSelectedTags={setSelectedTags} selectedTags={selectedTags} setCountry={setCountry} country={country} />
-     <Terms data={list} setSelectedTags={setSelectedTags} selectedTags={selectedTags} setCountry={setTerms} country={terms} />
      <Sectors data={list} setSelectedTags={setSelectedTags} selectedTags={selectedTags} setCountry={setSectors} country={sectors} />
-     </div>
+     <Companies data={list} setSelectedTags={setSelectedTags} selectedTags={selectedTags} setCountry={setCompanies} country={companies} />
+     <Terms data={list} setSelectedTags={setSelectedTags} selectedTags={selectedTags} setCountry={setTerms} country={terms} />
+      </div>
      <div className='flex flex-wrap mt-2 w-[100%] gap-2'>
       {selectedTags.map((tag, index) => (
         <div className='cursor-pointer border-[#051131] text-[#051131] px-4 rounded-full border-[2px]' key={index}>{tag} <button onClick={() => removeTag(tag)}>x</button></div>
@@ -491,7 +380,7 @@ function removeTag(tag) {
       
 
      <div className=' h-[100%]  px-10 w-[100%] gap-2'>
-     <h1 className='text-xl py-3 text-[#1b254b] font-bold'>{ currentIndex === 1 && "Financial Visualization" } { currentIndex === 0 && "Main Dashboard" } { currentIndex === 2 && "Terms Visualization" }</h1>
+     <h1 className='text-xl py-3 text-[#1b254b] font-bold'>{ currentIndex === 1 && "Percentage in Change Stock Price and Market Cap" } { currentIndex === 0 && "Main Dashboard" } { currentIndex === 2 && "Terms Visualization" }</h1>
      {Tabs[currentIndex]}
      
      </div>
