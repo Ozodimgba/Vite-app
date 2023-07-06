@@ -12,9 +12,13 @@ const FunnelChart = ({ funneldata, labels }) => {
   const layout = {
     margin: {l: 200, r: 0},
     title: `${labels}`,
-    height: 400,
+    height: 600,
     width: 700,
     showlegend: 'true'
+  };
+
+  const config = {
+    displayModeBar: false
   };
 
   const divRef = useRef(null);
@@ -79,19 +83,17 @@ const FunnelChart = ({ funneldata, labels }) => {
     html2canvas(divElement).then(canvas => {
       const image = canvas.toDataURL('image/png');
 
-      const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
-        image
-      )}`;
+      const twitterShareUrl = `https://twitter.com/intent/tweet?url=https://dataproducts.io&text=Check Out This Earnings Explorer App By Data Products LLC`;
       window.open(twitterShareUrl, '_blank');
     });
   };
 
   return <div ref={divRef} className='flex relative bg-white flex-col w-[80%]'>
-  <Plot data={data} layout={layout} />
+  <Plot data={data} layout={layout} config={config}/>
   <div className='absolute top-0 right-0 p-2'>
-  <button onClick={handleShareLinkedIn}><AiFillLinkedin color='1652f0' size={30} /></button>
-  <button onClick={handleShareTwitter}><AiFillTwitterSquare color='1652f0' size={30} /></button>
-  <button onClick={handleDownload}><IoMdDownload color='1652f0' size={30} /></button>
+  <button onClick={handleShareLinkedIn}><AiFillLinkedin color='0077b5' size={20} /></button>
+  <button onClick={handleShareTwitter}><AiFillTwitterSquare color='1DA1F2' size={20} /></button>
+  <button onClick={handleDownload}><IoMdDownload color='228B22' size={20} /></button>
   </div>
   </div>;;
 };

@@ -21,6 +21,10 @@ const BarChart = ({ bardata, title, yLabel }) => {
     },
   ];
 
+  const config = {
+    displayModeBar: false
+  };
+
   const divRef = useRef(null);
 
   const handleDownload = () => {
@@ -104,11 +108,11 @@ const BarChart = ({ bardata, title, yLabel }) => {
   };
 
   return <div ref={divRef} className='flex relative bg-white flex-col w-[100%]'>
-  <Plot data={data} layout={layout} />
+  <Plot data={data} layout={layout} config={config}/>
   <div className='absolute top-0 right-0 px-2 py-1'>
-  <button onClick={handleShareLinkedIn}><AiFillLinkedin color='1652f0' size={30} /></button>
-  <button onClick={handleShareTwitter}><AiFillTwitterSquare color='1652f0' size={30} /></button>
-  <button onClick={handleDownload}><IoMdDownload color='1652f0' size={30} /></button>
+  <button onClick={handleShareLinkedIn}><AiFillLinkedin color='0077b5' size={20} /></button>
+  <button onClick={handleShareTwitter}><AiFillTwitterSquare color='1DA1F2' size={20} /></button>
+  <button onClick={handleDownload}><IoMdDownload color='228B22' size={20} /></button>
   </div>
   </div>;
 };

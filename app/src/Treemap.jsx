@@ -62,9 +62,7 @@ const TreeMapChart = () => {
 
         const url = window.URL.createObjectURL(blob);
 
-        const linkedInShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-          url
-        )}`;
+        const linkedInShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=https://dataproducts.io`;
         window.open(linkedInShareUrl, '_blank');
 
         // Clean up the object URL
@@ -80,9 +78,7 @@ const TreeMapChart = () => {
     html2canvas(divElement).then(canvas => {
       const image = canvas.toDataURL('image/png');
 
-      const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
-        image
-      )}`;
+      const twitterShareUrl = `https://twitter.com/intent/tweet?url=https://dataproducts.io&text=Check Out This Earnings Explorer App By Data Products LLC`;
       window.open(twitterShareUrl, '_blank');
     });
   };
@@ -94,9 +90,9 @@ const TreeMapChart = () => {
   return <div ref={divRef} className='flex relative bg-white flex-col w-[80%]'>
   <Plot data={data} layout={layout} />
   <div className='absolute top-0 right-0 px-2 py-1'>
-  <button onClick={handleShareLinkedIn}><AiFillLinkedin color='1652f0' size={30} /></button>
-  <button onClick={handleShareTwitter}><AiFillTwitterSquare color='1652f0' size={30} /></button>
-  <button onClick={handleDownload}><IoMdDownload color='1652f0' size={30} /></button>
+  <button onClick={handleShareLinkedIn}><AiFillLinkedin color='0077b5' size={20} /></button>
+  <button onClick={handleShareTwitter}><AiFillTwitterSquare color='1DA1F2' size={20} /></button>
+  <button onClick={handleDownload}><IoMdDownload color='228B22' size={20} /></button>
   </div>
   </div>;;
 };
