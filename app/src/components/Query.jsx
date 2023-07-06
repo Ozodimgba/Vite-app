@@ -15,7 +15,9 @@ function Query() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("clicked")
     sendQuery();
+    console.log("submitted")
   };
 
   const sendQuery = async () => {

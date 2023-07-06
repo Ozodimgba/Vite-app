@@ -1,4 +1,7 @@
 /* eslint-disable react/prop-types */
+import React, { useRef } from 'react';
+import html2canvas from 'html2canvas';
+import download from 'downloadjs';
 import Plot from 'react-plotly.js';
 
 const HeatmapChart = ({ heatdata }) => {
@@ -18,11 +21,88 @@ const HeatmapChart = ({ heatdata }) => {
     },
   ];
 
+  const divRef = useRef(null);
+
+  const handleDownload = () => {
+    const divElement = divRef.current;
+
+    html2canvas(divElement).then(canvas => {
+      const image = canvas.toDataURL('image/png');
+
+      // Create a new canvas element to draw the image and overlay
+      const overlayCanvas = document.createElement('canvas');
+      overlayCanvas.width = canvas.width;
+      overlayCanvas.height = canvas.height;
+      const context = overlayCanvas.getContext('2d');
+
+      // Draw the original image
+      const originalImage = new Image();
+      originalImage.src = image;
+      originalImage.onload = () => {
+        context.drawImage(originalImage, 0, 0);
+
+        // Draw the overlay image
+        const overlayImage = new Image();
+        overlayImage.src = 'logo.png';
+        overlayImage.onload = () => {
+          context.drawImage(overlayImage, 0, 0);
+
+          // Convert the overlay canvas to data URL
+          const finalImage = overlayCanvas.toDataURL('image/png');
+
+          // Trigger the download of the final image
+          download(finalImage, 'div_image_with_overlay.png');
+        };
+      };
+    });
+  };
+
+  const handleShareLinkedIn = () => {
+    const divElement = divRef.current;
+
+    html2canvas(divElement).then(canvas => {
+      canvas.toBlob(blob => {
+        const data = new FormData();
+        data.append('image', blob, 'div_image.png');
+
+        const url = window.URL.createObjectURL(blob);
+
+        const linkedInShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+          url
+        )}`;
+        window.open(linkedInShareUrl, '_blank');
+
+        // Clean up the object URL
+        window.URL.revokeObjectURL(url);
+      });
+    });
+  };
+
+  
+  const handleShareTwitter = () => {
+    const divElement = divRef.current;
+
+    html2canvas(divElement).then(canvas => {
+      const image = canvas.toDataURL('image/png');
+
+      const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
+        image
+      )}`;
+      window.open(twitterShareUrl, '_blank');
+    });
+  };
+
+
   const layout = {
     title: 'Frequency of Term Over Years and Quarters',
   };
 
-  return <Plot data={data} layout={layout} />;
+  return <div ref={divRef} className='flex flex-col w-[80%]'>
+  <Plot data={data} layout={layout} />
+  <button onClick={handleDownload}>Download</button>
+  <button onClick={handleShareLinkedIn}>Share on LinkedIn</button>
+  <button onClick={handleShareTwitter}>Share on Twitter</button>
+  </div>;
 };
 
 export default HeatmapChart;
