@@ -14,7 +14,15 @@ const FunnelChart = ({ funneldata, labels }) => {
     title: `${labels}`,
     height: 600,
     width: 700,
-    showlegend: 'true'
+    showlegend: 'true',
+    funnelmode: 'stack',
+    hoverlabel: {
+      namelength: -1
+    },
+    yaxis: {
+      tickformat: '.2s' // Display values with two decimal places
+    },
+    automargin: true // Adjust margins to fit labels
   };
 
   const config = {

@@ -237,10 +237,10 @@ const My_Component4 = <MdOutlineAttachMoney color='white' />
     <BarChart bardata={three} yLabel="Operating Income" title='Top Five Terms by Operating Income' />
     <BarChart bardata={four} yLabel="Operating Income" title='Bottom Five Terms by Operating Income' />
     <div className='col-span-2 w-[100%] flex justify-center'>
-    <FunnelChart labels="Top Five Terms and Coresponding financials" funneldata={five} />
+    <FunnelChart labels="Top Five Terms By Count and Coresponding Key Financials" funneldata={five} />
     </div>
     <div className='col-span-2 w-[100%] flex justify-center'>
-    <FunnelChart labels="Bottom Five Terms and Coresponding financials" funneldata={six} />
+    <FunnelChart labels="Bottom Five Terms By Count and Coresponding Key Financials" funneldata={six} />
     </div>
     </div>,
 
@@ -264,7 +264,7 @@ const My_Component4 = <MdOutlineAttachMoney color='white' />
     </div>,
     <div className='w-[100%] gap-6 flex flex-col items-center justify-center'>
       <div className='w-[80%]'>
-      <BarChart bardata={quarter} yLabel="Terms count" title='Individual quarterly terms count' />
+      <BarChart bardata={quarter} yLabel="Terms count" title='Individual Quarterly Terms Count' />
       </div>
        <HeatmapChart heatdata={tfr} />
       <div className='bg-[#141414] px-2 flex text-center rounded-lg'>
@@ -380,7 +380,7 @@ function removeTag(tag) {
       
 
      <div className=' h-[100%]  px-10 w-[100%] gap-2'>
-     <h1 className='text-xl py-3 text-[#1b254b] font-bold'>{ currentIndex === 1 && "Percentage in Change Stock Price and Market Cap" } { currentIndex === 0 && "Term-Financial Visualization" } { currentIndex === 2 && "Terms Visualization" }</h1>
+     <h1 className='text-xl py-3 text-[#1b254b] font-bold'>{ currentIndex === 1 && "Percentage Change in Stock Price and Market Cap" } { currentIndex === 0 && "Financial Metrics Per Individual Term" } { currentIndex === 2 && "Terms Visualization" }</h1>
      {Tabs[currentIndex]}
      
      </div>
