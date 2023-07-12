@@ -41,6 +41,7 @@ const MainCard = ({ data }) => {
           // Make the actual API call to fetch the dynamic data
           const response = await axios.post('https://data-value-tool.up.railway.app/average-financials-for-individual-terms', payload);
           const data = JSON.parse(response.data);
+          console.log(data)
           setCardData(data)
       
   

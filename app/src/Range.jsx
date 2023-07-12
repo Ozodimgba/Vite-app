@@ -13,7 +13,7 @@ export default function YearRange ({ yearRange, setYearRange}){
     };
 
  return (
-  <div style={{padding:10 }}>
+  <div style={{padding:18 }}>
     <Slider range 
     min={2012} 
     max={2022}

@@ -1,0 +1,95 @@
+import React,{useState} from 'react'
+import { BiFlag, BiSolidCircleThreeQuarter } from 'react-icons/bi'
+import { MdOutlineAttachMoney, MdOutlineAccountBalance } from 'react-icons/md'
+import YearRange from '../Range'
+import Fliter from './Fliter'
+import Card from './Card'
+import Country from './filters/Countries'
+import Sectors from './filters/Sectors'
+import Companies from './filters/Companies'
+import Carousel from './Carousel'
+import Query from './Query'
+import Terms from './filters/Terms'
+
+function FixedHeader({ card, cardtwo, cardthree, currentIndex, setCurrentIndex, list }) {
+  const [yearRange, setYearRange] = useState([2012, 2022]);
+  const [country, setCountry] = useState(['All'])
+  const [regions, setRegions] = useState(['All'])
+  const [companies, setCompanies] = useState(['All'])
+  const [sectors, setSectors] = useState(['All'])
+  const [terms, setTerms] = useState(['All'])
+  const [selectedTags, setSelectedTags] = useState([]);
+
+
+
+  const My_Component = <MdOutlineAccountBalance color='white' />
+  const My_Component2 = <BiFlag color='white' />
+  const My_Component3 = <BiSolidCircleThreeQuarter color='white' />
+  const My_Component4 = <MdOutlineAttachMoney color='white' />
+
+  function removeTag(tag) {
+    const updatedTags = selectedTags.filter((selectedTag) => selectedTag !== tag);
+    setRegions((prevRegions) => prevRegions.filter((region) => region !== tag));
+    setCompanies((prevCompanies) => prevCompanies.filter((company) => company !== tag));
+    setSectors((prevSectors) => prevSectors.filter((sector) => sector !== tag));
+    setTerms((prevTerms) => prevTerms.filter((term) => term !== tag));
+    setCountry((prevCountries) => prevCountries.filter((countrys) => countrys !== tag));
+    setSelectedTags(updatedTags);
+  }
+
+  const slides = [<div className='grid grid-cols-3 w-[100%] relative gap-6'>
+      <Card title="Companies Present Based On Filters" color="bg-blue-800" number={card?.companies_present} icon={My_Component}  duration={3000} />
+      <Card title="Countries Present Based On Filters" color="bg-purple-600" number={card?.countries_present} icon={My_Component2}  duration={3000} />
+      <Card title="Sectors Present Based On Filters" color="bg-orange-500" number={card?.sectors_present} icon={My_Component3}  duration={3000} />
+      </div>, <div className='grid grid-cols-3 w-[100%] relative gap-6'>
+      <Card title="Total Revenue Across Companies" color="bg-purple-600" number={cardtwo?.total_revenue} icon={My_Component4}  duration={3000} />
+    <Card title="Total Operating Income Across Companies" color="bg-red-400" number={cardtwo?.total_operating_income} icon={My_Component4} duration={3000} />
+    <Card title="Total Gross Profit Across Companies" color="bg-green-400" number={cardtwo?.total_gross_profit} icon={My_Component4}  duration={3000} /> 
+      </div>, <div className='grid grid-cols-3 w-[100%] relative gap-6'>
+      <Card title="Average Revenue Across Companies" color="bg-orange-500" number={cardthree?.average_revenue}  icon={My_Component4} duration={3000} />
+    <Card title="Average Operating Income Across Companies" color="bg-purple-600" number={cardthree?.average_operating_income}  icon={My_Component4} duration={3000} />
+    <Card title="Average Gross Profit Across Companies" color="bg-blue-800" number={cardthree?.average_gross_profit} icon={My_Component4} duration={3000} /> 
+     
+      </div>];
+    
+
+  return (
+    <div className='w-full max-w-[100vw] overflow-hidden relative z-40 bg-[#e3edf7] pb-3 h-full'>
+      <div className='w-full sticky top-0 right-0'>
+      <div className='w-[100%] flex flex-row justify-between items-center'>
+      <div className='w-[30%] flex flex-col py-3'>
+      <h1 className='text-[0.8rem]'>Pages / { currentIndex === 1 && "Financial Visualization" } { currentIndex === 0 && "Main Dashboard" } { currentIndex === 2 && "Terms Visualization" }</h1>
+      <h1 className='text-3xl text-[#1b254b] font-bold'>Earning Explorer</h1>
+      </div>
+      <div className='w-[50%] z-50 pt-[2%] pr-5 h-full'>
+        <Query />
+      </div>
+      </div>
+     
+     {/* <h1>Regions: {regions}</h1>
+     <h1>Country: {country}</h1>
+      <h1>Terms: {terms}</h1>
+      <h1>Sectors: {sectors}</h1>
+      <h1>Companies: {companies}</h1> */}
+      <div className='w-[100%] py-1'>
+        <YearRange yearRange={yearRange} setYearRange={setYearRange} />
+      </div>
+    <div className='flex justify-between gap-2 border-white rounded-full bg-[#051131] mt-4 py-2 px-2'>
+     <Fliter data={list} setSelectedTags={setSelectedTags} selectedTags={selectedTags} setRegions={setRegions} regions={regions} />
+     <Country data={list} setSelectedTags={setSelectedTags} selectedTags={selectedTags} setCountry={setCountry} country={country} />
+     <Sectors data={list} setSelectedTags={setSelectedTags} selectedTags={selectedTags} setCountry={setSectors} country={sectors} />
+     <Companies data={list} setSelectedTags={setSelectedTags} selectedTags={selectedTags} setCountry={setCompanies} country={companies} />
+     <Terms data={list} setSelectedTags={setSelectedTags} selectedTags={selectedTags} setCountry={setTerms} country={terms} />
+      </div>
+     <div className='flex flex-wrap mt-2 w-[100%] gap-2'>
+      {selectedTags.map((tag, index) => (
+        <div className='cursor-pointer border-[#051131] text-[#051131] px-4 rounded-full border-[2px]' key={index}>{tag} <button onClick={() => removeTag(tag)}>x</button></div>
+      ))}
+    </div>
+    </div>
+    <Carousel slides={slides} />
+     </div>
+  )
+}
+
+export default FixedHeader

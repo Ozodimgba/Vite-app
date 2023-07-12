@@ -1,40 +1,98 @@
-
-import { useQuery, QueryClient, QueryClientProvider, useQueryClient, } from 'react-query';
-import { BiFlag, BiSolidCircleThreeQuarter } from 'react-icons/bi'
-import { MdOutlineAttachMoney, MdOutlineAccountBalance } from 'react-icons/md'
+/* eslint-disable react/jsx-key */
+/* eslint-disable react/jsx-no-undef */
+/* eslint-disable no-unused-vars */
+import { useState, useRef, useEffect } from 'react';
 import { Bars, LineWave } from  'react-loader-spinner'
-import FixedHeader from './components/FixedHeader';
-import SideBar from './components/SideBar';
-import Main from './components/Tabs/Main';
-import Finance from './components/Tabs/Finance';
-import Terms from './components/Tabs/Terms';
+import Fliter from './components/Fliter';
+import Query from './components/Query';
+import { BiFlag, BiSolidCircleThreeQuarter } from 'react-icons/bi'
+import { MdOutlineAttachMoney } from 'react-icons/md'
 import TreeMapChart from './Treemap';
+import FunnelChart from './FunnelChart';
+import Map from './Map';
+import Cloud from './Word';
+
+import MainCard from './components/MainCard';
+import StockCard from './components/StockCard';
+import Country from './components/filters/Countries';
+import Sectors from './components/filters/Sectors';
+import Terms from './components/filters/Terms';
+import Companies from './components/filters/Companies';
+import Term from './components/filters/Term';
+//import NumberAnimation from './components/NumberAnimation';
+import BarChart from './BarChart';
+import { MdOutlineAccountBalance } from 'react-icons/md'
 import Card from './components/Card';
-import React,{ useState } from 'react';
-import useSWR,{ SWRConfig } from 'swr';
-import Carousel from './components/Carousel';
-import Test from './Test';
 import axios from 'axios';
+import HeatmapChart from './Heatmap';
+import YearRange from './Range';
 
-function App() {
-    const [country, setCountry] = useState(['All'])
-    const [regions, setRegions] = useState(['All'])
-    const [companies, setCompanies] = useState(['All'])
-    const [terms, setTerms] = useState(['All'])
-    const [yearRange, setYearRange] = useState([2012, 2022]);
-    const [sectors, setSectors] = useState(['All'])
-    const [counter, setCounter] = useState(0)
-    const [currentIndex, setCurrentIndex] = useState(0)
 
-    const payload = {
-        "from_year": yearRange[0],
-        "to_year": yearRange[1],
-        "regions": regions,
-        "countries": country,
-        "companies": companies,
-        "sectors": sectors,
-        "terms": terms
-      }
+
+
+export default function Home() {
+
+ // const [isOpen, setIsOpen] = useState(true);
+ 
+  const [currentIndex, setCurrentIndex] = useState(0)
+  //const [filter, setFilter] = useState("Regions");
+  const [quarter, setQuarter] = useState(null)
+  const [country, setCountry] = useState(['All'])
+  const [regions, setRegions] = useState(['All'])
+  const [companies, setCompanies] = useState(['All'])
+  const [selectedTags, setSelectedTags] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [yearRange, setYearRange] = useState([2012, 2022]);
+  const [sectors, setSectors] = useState(['All'])
+  const [terms, setTerms] = useState(['All'])
+  const [list, setList] = useState(null)
+  const [tfr, setTfr] = useState(null)
+  const [tfo, setTfo] = useState(null)
+  const [btr, setBtr] = useState(null)
+  const [one, setOne] = useState(null)
+  const [two, setTwo] = useState(null)
+  const [three, setThree] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const [four, setFour] = useState(null)
+  const [five, setFive] = useState(null)
+  const [six, setSix] = useState(null)
+  const [seven, setSeven] = useState(null)
+  const [eight, setEight] = useState(null)
+  const [nine, setNine] = useState(null)
+  const [ten, setTen] = useState(null)
+  const [eleven, setEleven] = useState(null)
+  const [card, setCard] = useState(null);
+  const [open, setOpen] = useState(false)
+  const [cardtwo, setCardtwo] = useState([])
+  const [cardthree, setCardthree] = useState([])
+  const [drop, setDrop] = useState([
+    {
+      name: "North America"
+    },
+    {
+      name: "Europe"
+    },
+    {
+      name: "Africa"
+    },
+    {
+      name: "South America"
+    },
+    {
+      name: "Oceania"
+    },
+  ]);
+  const divRef = useRef(null);
+
+  const payload = {
+    "from_year": yearRange[0],
+    "to_year": yearRange[1],
+    "regions": regions,
+    "countries": country,
+    "companies": companies,
+    "sectors": sectors,
+    "terms": terms
+  }
 
   const payloadTwo = {
     "from_year": 2012,
@@ -131,48 +189,17 @@ function App() {
 console.log("here" + JSON.stringify(eight))
 
 
-  //Barcharts Main page
 
-  const IndvQuarterBarChart = {
-    chart: {
-      type: quarter?.type
-    },
-    series: [
-      {
-        name: 'My Dataset',
-        data: quarter?.data
-      }
-    ],
-    xaxis: {
-      categories: quarter?.labels
-    },
-    plotOptions: {
-      bar: {
-        horizontal: true,
-        dataLabels: {
-          position: 'top',
-        },
-      }
-    },
-    title: {
-      text: 'Individual quarterly terms count'
-    },
-  };
+const My_Component = <MdOutlineAccountBalance color='white' />
+const My_Component2 = <BiFlag color='white' />
+const My_Component3 = <BiSolidCircleThreeQuarter color='white' />
+const My_Component4 = <MdOutlineAttachMoney color='white' />
 
-
-      const My_Component = <MdOutlineAccountBalance color='white' />
-      const My_Component2 = <BiFlag color='white' />
-      const My_Component3 = <BiSolidCircleThreeQuarter color='white' />
-      const My_Component4 = <MdOutlineAttachMoney color='white' />
-
-      
-          const urls = [
-            'https://data-value-tool.up.railway.app/get_filters',
-            'https://data-value-tool.up.railway.app/companies-countries-sectors',
-            'https://data-value-tool.up.railway.app/total-financials',
-            'https://data-value-tool.up.railway.app/average-financials'
-            // Add more URLs for other API calls
-          ];
+  const Tabs = [
+    <div className='w-[100%] grid grid-cols-2 gap-3'>
+      <div className='col-span-2 flex flex-col items-center bg-white rounded-md shadow-md'>
+  
+       <MainCard data={list} />
         
       </div>
     <BarChart bardata={tfo} yLabel="Revenue" title="Top Five Terms by Revenue" />
@@ -250,7 +277,18 @@ function removeTag(tag) {
     </div>;
   }
   return (
-    <div className='flex max-w-[100vw] min-h-screen bg-[#e3edf7] flex-row'>
+    <main
+      className={`flex min-h-screen bg-[#e3edf7] flex-row`}
+    >
+    {/* <Head>
+        <title>Earning Explore || Data product LLC</title>
+     </Head>  */}
+     {/* <Fliter /> */}
+     <div className='bg-white flex py-8 flex-col text-white sticky top-0 left-0 h-[100vh] px-2 w-[20%]'>
+      <div className='flex flex-col border-[#1b254b] pb-4 border-b-2 mx-3'>
+      <div className='w-[70%]'>
+      <img src='logo.png' />
+      </div>
       
       </div>
       <>
@@ -278,13 +316,38 @@ function removeTag(tag) {
       <h1 className='text-[0.8rem]'>Pages / { currentIndex === 1 && "Financial Visualization" } { currentIndex === 0 && "Main Dashboard" } { currentIndex === 2 && "Terms Visualization" }</h1>
       <h1 className='text-3xl text-[#1b254b] font-bold'>Earning Explorer</h1>
       </div>
-    {/* {allDataLoaded ? (
-      // Render your component with the retrieved data
-      <div>Your Component</div>
-    ) : (
-      // Render loading state while data is being fetched
-      <div>Loading...</div>
-    )} */}
+      <div className='w-[50%] z-50 pt-[2%] pr-5 h-full'>
+        <Query />
+      </div>
+      </div>
+     
+     {/* <h1>Regions: {regions}</h1>
+     <h1>Country: {country}</h1>
+      <h1>Terms: {terms}</h1>
+      <h1>Sectors: {sectors}</h1>
+      <h1>Companies: {companies}</h1> */}
+      <div className='w-[100%] py-1'>
+        <YearRange yearRange={yearRange} setYearRange={setYearRange} />
+      </div>
+    <div className='flex gap-2 border-white rounded-full bg-[#051131] mt-4 py-2 px-2'>
+     <Fliter data={list} setSelectedTags={setSelectedTags} selectedTags={selectedTags} setRegions={setRegions} regions={regions} />
+     <Country data={list} setSelectedTags={setSelectedTags} selectedTags={selectedTags} setCountry={setCountry} country={country} />
+     <Sectors data={list} setSelectedTags={setSelectedTags} selectedTags={selectedTags} setCountry={setSectors} country={sectors} />
+     <Companies data={list} setSelectedTags={setSelectedTags} selectedTags={selectedTags} setCountry={setCompanies} country={companies} />
+     <Terms data={list} setSelectedTags={setSelectedTags} selectedTags={selectedTags} setCountry={setTerms} country={terms} />
+      </div>
+     <div className='flex flex-wrap mt-2 w-[100%] gap-2'>
+      {selectedTags.map((tag, index) => (
+        <div className='cursor-pointer border-[#051131] text-[#051131] px-4 rounded-full border-[2px]' key={index}>{tag} <button onClick={() => removeTag(tag)}>x</button></div>
+      ))}
+    </div>
+     </div>
+     
+
+    <div className='grid grid-cols-3 w-[100%] relative gap-6 mt-4'>
+    <Card title="Companies Present Based On Filters" color="bg-blue-800" icon={My_Component} number={card["Companies Present"]} duration={3000} />
+    <Card title="Countries Present Based On Filters" color="bg-purple-600" icon={My_Component2} number={card["Countries Present"]} duration={3000} />
+    <Card title="Sectors Present Based On Filters" color="bg-orange-500" icon={My_Component3} number={card["Sectors Present"]} duration={3000} />
     </div>
       
 
@@ -298,5 +361,3 @@ function removeTag(tag) {
     </main>
   )
 }
-
-export default App
