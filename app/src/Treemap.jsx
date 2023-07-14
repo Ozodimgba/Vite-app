@@ -92,7 +92,7 @@ const TreeMapChart = ({ treedata }) => {
   };
 
   const layout = {
-    title: 'Treemap Chart',
+    title: treedata?.name
   };
 
   return <div ref={divRef} className='flex relative bg-white flex-col w-[80%]'>

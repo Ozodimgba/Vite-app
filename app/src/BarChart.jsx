@@ -5,7 +5,8 @@ import html2canvas from 'html2canvas';
 import download from 'downloadjs';
 import Plot from 'react-plotly.js';
 import { IoMdDownload } from 'react-icons/io'
-import { AiFillTwitterSquare, AiFillLinkedin } from 'react-icons/ai'
+import { AiFillTwitterSquare, AiFillLinkedin, AiFillCloseCircle } from 'react-icons/ai'
+import { BsFillShareFill } from "react-icons/bs";
 
 const BarChart = ({ bardata, title, yLabel }) => {
   const data = [
@@ -92,6 +93,26 @@ const BarChart = ({ bardata, title, yLabel }) => {
     });
   };
 
+  const popupRef = useRef(null);
+
+  const handleOpenPopup = () => {
+    popupRef.current.style.display = 'block';
+  }
+
+  const handleClosePopup = () => {
+    popupRef.current.style.display = 'none';
+  }
+
+  let xasis_title;
+  let ticklabels;
+  if (yLabel == "Terms count") {
+    xasis_title = "Quarters";
+    ticklabels = true
+  } else {
+    xasis_title = "Terms";
+    ticklabels = false
+  }
+
   const layout = {
     title: {
       text: `${title}`,
@@ -101,19 +122,35 @@ const BarChart = ({ bardata, title, yLabel }) => {
         weight: 'bold', // Set the weight to 'bold' to make the title text bolder
       },
     },
-    xaxis: { title: 'Terms', showticklabels: false, },
+    xaxis: { title: xasis_title, showticklabels: ticklabels, },
     yaxis: { title: `${yLabel}` },
     bargap: 0.5, // Adjust the gap between bars
     bargroupgap: 0.1,
   };
 
   return <div ref={divRef} className='flex relative bg-white flex-col w-[100%]'>
-  <Plot data={data} layout={layout} config={config}/>
-  <div className='absolute top-0 right-0 px-2 py-1'>
-  <button onClick={handleShareLinkedIn}><AiFillLinkedin color='0077b5' size={20} /></button>
-  <button onClick={handleShareTwitter}><AiFillTwitterSquare color='1DA1F2' size={20} /></button>
-  <button onClick={handleDownload}><IoMdDownload color='228B22' size={20} /></button>
-  </div>
+    <Plot data={data} layout={layout} config={config}/>
+    <div className='absolute top-0 right-0 px-2 py-1'>
+
+      <button onClick={handleDownload}><IoMdDownload color='228B22' size={20} /></button>
+
+      <div onClick={handleOpenPopup} className="pb-2">
+        <BsFillShareFill color='1DA1F2' size={15} />
+      </div>
+
+      {/* <div ref={popupRef} className="popup" style={{ display: 'none' }}>
+        <button onClick={handleShareLinkedIn}>
+          <AiFillLinkedin color='0077b5' size={19} />
+        </button>
+        <button onClick={handleShareTwitter}>
+          <AiFillTwitterSquare color='1DA1F2' size={19} />
+        </button>
+        <button onClick={handleClosePopup} className="popup-close">
+          <AiFillCloseCircle color='FF0000' size={19} />
+        </button>
+      </div> */}
+
+    </div>
   </div>;
 };
 

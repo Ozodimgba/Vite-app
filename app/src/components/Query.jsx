@@ -10,12 +10,12 @@ function Query() {
 
   const handleQueryChange = (e) => {
     setQuery(e.target.value);
-    
+    console.log(e.target.value)
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("clicked")
+    console.log("clicked", e.target.value)
     sendQuery()
     .then(error => console.log(error));
     console.log("submitted")
@@ -26,8 +26,9 @@ function Query() {
     try {
       const response = await axios.post(
         'https://data-value-tool.up.railway.app/chatbot-query',
-        { query }
+        { query: query }
       );
+      console.log(query)
       // Set the response data to state
       setResponse(JSON.parse(response.data));
     } catch (error) {
@@ -44,8 +45,9 @@ function Query() {
           type="text"
           value={query}
           onChange={handleQueryChange}
-          placeholder="Enter your query"
+          placeholder="Send a message"
           className='w-[70%] bg-white border-white'
+          style={{ outline: 'none' }}
         />
         <button className='bg-blue-700 text-white rounded-full px-3 py-2' type="submit">Send Query</button>
      </div>

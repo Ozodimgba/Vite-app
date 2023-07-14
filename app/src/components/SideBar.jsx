@@ -16,11 +16,11 @@ function SideBar({ currentIndex, setCurrentIndex }) {
       <div className={`w-[2%] rounded-sm ${ currentIndex === 0? 'bg-[#051131]' : 'bg-white'} `}></div>
       </div>
       <div className='w-[100%] mt-2 flex'>
-      <button onClick={() => setCurrentIndex(1)} className={`w-[98%] py-2 rounded-sm flex justify-start px-3  cursor-pointer text-[#051131] ${ currentIndex === 1? 'font-bold' : 'font-normal'}`}><h1>Financial Visualization</h1></button>
+      <button onClick={() => setCurrentIndex(1)} className={`w-[98%] py-2 rounded-sm flex justify-start px-3  cursor-pointer text-[#051131] ${ currentIndex === 1? 'font-bold' : 'font-normal'}`}><h1>Financial Analysis</h1></button>
       <div className={`w-[2%] rounded-sm ${ currentIndex === 1? 'bg-[#051131]' : 'bg-white'} `}></div>
       </div>
       <div className='w-[100%] mt-2 flex'>
-      <button onClick={() => setCurrentIndex(2)} className={`w-[98%] py-2 rounded-sm flex justify-start px-3  cursor-pointer text-[#051131] ${ currentIndex === 2? 'font-bold' : 'font-normal'}`}><h1>Terms Visualization</h1></button>
+      <button onClick={() => setCurrentIndex(2)} className={`w-[98%] py-2 rounded-sm flex justify-start px-3  cursor-pointer text-[#051131] ${ currentIndex === 2? 'font-bold' : 'font-normal'}`}><h1>Terms Analysis</h1></button>
       <div className={`w-[2%] rounded-sm ${ currentIndex === 2? 'bg-[#051131]' : 'bg-white'} `}></div>
       </div>
    

@@ -5,6 +5,7 @@ import download from 'downloadjs';
 import Plot from 'react-plotly.js';
 import { IoMdDownload } from 'react-icons/io'
 import { AiFillTwitterSquare, AiFillLinkedin } from 'react-icons/ai'
+import { BsFillShareFill } from "react-icons/bs";
 
 const FunnelChart = ({ funneldata, labels }) => {
   const data = funneldata?.data;
@@ -95,6 +96,16 @@ const FunnelChart = ({ funneldata, labels }) => {
       window.open(twitterShareUrl, '_blank');
     });
   };
+
+  const popupRef = useRef(null);
+
+  const handleOpenPopup = () => {
+    popupRef.current.style.display = 'block';
+  }
+
+  const handleClosePopup = () => {
+    popupRef.current.style.display = 'none';
+  }
 
   return <div ref={divRef} className='flex relative bg-white flex-col w-[80%]'>
   <Plot data={data} layout={layout} config={config}/>
