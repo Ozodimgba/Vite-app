@@ -11,6 +11,8 @@ function Main({ regions, country, companies, sectors, terms }) {
     const [counter, setCounter] = useState(0)
     const [currentIndex, setCurrentIndex] = useState(0)
 
+    console.log(sectors)
+
     const payload = {
         "from_year": yearRange[0],
         "to_year": yearRange[1],

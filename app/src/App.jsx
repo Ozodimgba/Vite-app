@@ -3,6 +3,9 @@
 /* eslint-disable no-unused-vars */
 import React,{ useState } from 'react';
 import FixedHeader from './components/FixedHeader';
+import { BiFlag, BiSolidCircleThreeQuarter } from 'react-icons/bi'
+import { MdOutlineAttachMoney, MdOutlineAccountBalance } from 'react-icons/md'
+import { Bars, LineWave } from  'react-loader-spinner'
 import SideBar from './components/SideBar';
 import Main from './components/Tabs/Main';
 import Finance from './components/Tabs/Finance';
@@ -63,9 +66,9 @@ function App() {
           
 
           const Tabs = [
-            <Main regions={regions} sector={sectors} terms={terms} country={country} companies={companies} />,
-            <Finance regions={regions} sector={sectors} terms={terms} country={country} companies={companies} />,
-            <Terms regions={regions} sector={sectors} terms={terms} country={country} companies={companies} />,
+            <Main regions={regions} sectors={sectors} terms={terms} country={country} companies={companies} />,
+            <Finance regions={regions} sectors={sectors} terms={terms} country={country} companies={companies} />,
+            <Terms regions={regions} sectors={sectors} terms={terms} country={country} companies={companies} />,
           ]
           
           

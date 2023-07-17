@@ -3,10 +3,16 @@ import React, { useState, useEffect } from 'react';
 const Carousel = ({ slides }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  const goToPreviousSlide = () => {
+    setCurrentSlide((prevSlide) => (prevSlide - 1 + slides.length) % slides.length);
+  };
+
+  const goToNextSlide = () => {
+    setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
+  };
+
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-    }, 5000);
+    const timer = setTimeout(goToNextSlide, 5000);
 
     return () => {
       clearTimeout(timer);
@@ -31,10 +37,18 @@ const Carousel = ({ slides }) => {
           </div>
         ))}
       </div>
+     
+     <div className='flex w-[100%]'>
+     <button className="carousel-control carousel-control-prev" onClick={goToPreviousSlide}>
+        Previous
+      </button>
+      <button className="carousel-control carousel-control-next" onClick={goToNextSlide}>
+        Next
+      </button>
+     </div>
+      
     </div>
   );
 };
 
 export default Carousel;
-
-
