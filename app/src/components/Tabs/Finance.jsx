@@ -5,13 +5,8 @@ import StockCard from '../StockCard'
 import TreeMapChart from '../../Treemap'
 import Card from '../Card'
 
-function Finance() {
-    const [country, setCountry] = useState(['All'])
-    const [regions, setRegions] = useState(['All'])
-    const [companies, setCompanies] = useState(['All'])
-    const [terms, setTerms] = useState(['All'])
+function Finance({ regions, country, companies, sectors, terms }) {
     const [yearRange, setYearRange] = useState([2012, 2022]);
-    const [sectors, setSectors] = useState(['All'])
     const [counter, setCounter] = useState(0)
     const [currentIndex, setCurrentIndex] = useState(0)
 

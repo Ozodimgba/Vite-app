@@ -1,5 +1,10 @@
-
-import { useQuery, QueryClient, QueryClientProvider, useQueryClient, } from 'react-query';
+/* eslint-disable react/jsx-key */
+/* eslint-disable react/jsx-no-undef */
+/* eslint-disable no-unused-vars */
+import { useState, useRef, useEffect } from 'react';
+import { Bars, LineWave } from  'react-loader-spinner'
+import Fliter from './components/Fliter';
+import Query from './components/Query';
 import { BiFlag, BiSolidCircleThreeQuarter } from 'react-icons/bi'
 import { MdOutlineAttachMoney, MdOutlineAccountBalance } from 'react-icons/md'
 import { Bars, LineWave } from  'react-loader-spinner'
@@ -9,6 +14,20 @@ import Main from './components/Tabs/Main';
 import Finance from './components/Tabs/Finance';
 import Terms from './components/Tabs/Terms';
 import TreeMapChart from './Treemap';
+import FunnelChart from './FunnelChart';
+import Map from './Map';
+import Cloud from './Word';
+
+import MainCard from './components/MainCard';
+import StockCard from './components/StockCard';
+import Country from './components/filters/Countries';
+import Sectors from './components/filters/Sectors';
+import Terms from './components/filters/Terms';
+import Companies from './components/filters/Companies';
+import Term from './components/filters/Term';
+//import NumberAnimation from './components/NumberAnimation';
+import BarChart from './BarChart';
+import { MdOutlineAccountBalance } from 'react-icons/md'
 import Card from './components/Card';
 import React,{ useState } from 'react';
 import useSWR,{ SWRConfig } from 'swr';
@@ -69,9 +88,9 @@ function App() {
           
 
           const Tabs = [
-            <Main />,
-            <Finance />,
-            <Terms />,
+            <Main regions={regions} sector={sectors} terms={terms} country={country} companies={companies} />,
+            <Finance regions={regions} sector={sectors} terms={terms} country={country} companies={companies} />,
+            <Terms regions={regions} sector={sectors} terms={terms} country={country} companies={companies} />,
           ]
           
           
@@ -106,8 +125,8 @@ function App() {
       
       <SideBar setCurrentIndex={setCurrentIndex} currentIndex={currentIndex} />
       <div className='h-full px-6 w-[80%]'>
-      <FixedHeader card={card} cardthree={card3} cardtwo={card2} list={data1} setCurrentIndex={setCurrentIndex} currentIndex={currentIndex} />
-      <h4 className='text-xl text-[#1b254b] font-bold'>Data at a Glance</h4>
+      <FixedHeader card={card} regions={regions} sector={sectors} setSectors={setSectors} companies={companies} setCompanies={setCompanies} country={country} setCountry={setCountry} setRegions={setRegions} terms={terms} setTerms={setTerms} cardthree={card3} cardtwo={card2} list={data1} setCurrentIndex={setCurrentIndex} currentIndex={currentIndex} />
+      
       {Tabs[currentIndex]}
       </div>
     {/* {allDataLoaded ? (

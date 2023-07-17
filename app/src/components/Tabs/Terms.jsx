@@ -6,13 +6,8 @@ import HeatmapChart from '../../Heatmap';
 import useSWR from 'swr';
 import axios from 'axios';
 
-function Terms() {
-    const [country, setCountry] = useState(['All'])
-    const [regions, setRegions] = useState(['All'])
-    const [companies, setCompanies] = useState(['All'])
-    const [terms, setTerms] = useState(['All'])
+function Terms({ regions, country, companies, sectors, terms }) {
     const [yearRange, setYearRange] = useState([2012, 2022]);
-    const [sectors, setSectors] = useState(['All'])
     const [counter, setCounter] = useState(0)
     const [currentIndex, setCurrentIndex] = useState(0)
 

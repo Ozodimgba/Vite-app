@@ -5,13 +5,9 @@ import BarChart from '../../BarChart';
 import FunnelChart from '../../FunnelChart';
 import axios from 'axios';
 
-function Main() {
-    const [country, setCountry] = useState(['All'])
-    const [regions, setRegions] = useState(['All'])
-    const [companies, setCompanies] = useState(['All'])
-    const [terms, setTerms] = useState(['All'])
+function Main({ regions, country, companies, sectors, terms }) {
+    
     const [yearRange, setYearRange] = useState([2012, 2022]);
-    const [sectors, setSectors] = useState(['All'])
     const [counter, setCounter] = useState(0)
     const [currentIndex, setCurrentIndex] = useState(0)
 
@@ -44,15 +40,20 @@ function Main() {
         return data;
       };
     
-      const { data: tfo, error: error1 } = useSWR(urls[0], fetcher);
-      const { data: btr, error: error2 } = useSWR(urls[1], fetcher);
-      const { data: one, error: error3 } = useSWR(urls[2], fetcher);
-      const { data: two, error: error4 } = useSWR(urls[3], fetcher);
-      const { data: three, error: error5 } = useSWR(urls[4], fetcher);;
-      const { data: four, error: error6 } = useSWR(urls[5], fetcher);
-      const { data: five, error: error7 } = useSWR(urls[6], fetcher);
-      const { data: six, error: error8 } = useSWR(urls[7], fetcher);
-      console.log(tfo, btr, one)
+      const options = {
+        revalidateOnMount: true,
+        revalidateOnFocus: true,
+      };
+    
+      const { data: tfo, error: error1 } = useSWR(urls[0], fetcher, options);
+      const { data: btr, error: error2 } = useSWR(urls[1], fetcher, options);
+      const { data: one, error: error3 } = useSWR(urls[2], fetcher, options);
+      const { data: two, error: error4 } = useSWR(urls[3], fetcher, options);
+      const { data: three, error: error5 } = useSWR(urls[4], fetcher, options);
+      const { data: four, error: error6 } = useSWR(urls[5], fetcher, options);
+      const { data: five, error: error7 } = useSWR(urls[6], fetcher, options);
+      const { data: six, error: error8 } = useSWR(urls[7], fetcher, options);
+      console.log(tfo, btr, one);
 
 
   return (
