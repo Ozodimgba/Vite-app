@@ -28,7 +28,8 @@ function Finance() {
     const urls = [
     'https://data-value-tool.up.railway.app/average-operating-income-variation-over-quarters-and-years',
     'https://data-value-tool.up.railway.app/average-revenue-variation-over-quarters-and-years',
-    'https://data-value-tool.up.railway.app/average-gross-profit-variation-over-quarters-and-years'
+    'https://data-value-tool.up.railway.app/average-gross-profit-variation-over-quarters-and-years',
+    'https://data-value-tool.up.railway.app/percentage-change-in-stock-price-and-market-cap'
            // Add more URLs for other API calls
       ];
     
@@ -38,7 +39,8 @@ function Finance() {
         console.log(JSON.stringify(data))
         return data;
       };
-    
+      
+      const { data: seven, error: error0 } = useSWR(urls[3], fetcher);
       const { data: eight, error: error1 } = useSWR(urls[0], fetcher);
       const { data: nine, error: error2 } = useSWR(urls[1], fetcher);
       const { data: ten, error: error3 } = useSWR(urls[2], fetcher);

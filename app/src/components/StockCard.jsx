@@ -26,16 +26,16 @@ const StockCard = ({ data, loading }) => {
   const formatNumber = (val) => {
     if (val >= 1000000000000) {
       // Trillion or more
-      return `${(val / 1000000000000).toFixed(2)}T`;
+      return `${(val / 1000000000000).toFixed(2)} T`;
     } else if (val >= 1000000000) {
       // Billion or more
-      return `${(val / 1000000000).toFixed(2)}B`;
+      return `${(val / 1000000000).toFixed(2)} B`;
     } else if (val >= 1000000) {
       // Million or more
-      return `${(val / 1000000).toFixed(2)}M`;
+      return `${(val / 1000000).toFixed(2)} M`;
     } else if (val >= 1000) {
       // Thousand or more
-      return `${(val / 1000).toFixed(2)}K`;
+      return `${(val / 1000).toFixed(2)} K`;
     } else {
       // Less than thousand
       return val;

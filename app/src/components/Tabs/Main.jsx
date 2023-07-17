@@ -69,10 +69,10 @@ function Main() {
     <BarChart bardata={three} yLabel="Operating Income" title='Top Five Terms by Operating Income' />
     <BarChart bardata={four} yLabel="Operating Income" title='Bottom Five Terms by Operating Income' />
     <div className='col-span-2 w-[100%] flex justify-center'>
-    <FunnelChart labels="Top Five Terms and Coresponding financials" funneldata={five} />
+    <FunnelChart labels="Most Frequent Terms And Associated Financials" funneldata={five} />
     </div>
     <div className='col-span-2 w-[100%] flex justify-center'>
-    <FunnelChart labels="Bottom Five Terms and Coresponding financials" funneldata={six} />
+    <FunnelChart labels="Least Frequent Terms And Associated Financials" funneldata={six} />
     </div>
     </div>
   )

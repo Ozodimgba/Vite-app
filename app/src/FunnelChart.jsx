@@ -4,7 +4,7 @@ import html2canvas from 'html2canvas';
 import download from 'downloadjs';
 import Plot from 'react-plotly.js';
 import { IoMdDownload } from 'react-icons/io'
-import { AiFillTwitterSquare, AiFillLinkedin } from 'react-icons/ai'
+import { AiFillTwitterSquare, AiFillLinkedin, AiFillCloseCircle } from 'react-icons/ai'
 import { BsFillShareFill } from "react-icons/bs";
 
 const FunnelChart = ({ funneldata, labels }) => {
@@ -19,11 +19,7 @@ const FunnelChart = ({ funneldata, labels }) => {
     funnelmode: 'stack',
     hoverlabel: {
       namelength: -1
-    },
-    yaxis: {
-      tickformat: '.2s' // Display values with two decimal places
-    },
-    automargin: true // Adjust margins to fit labels
+    }
   };
 
   const config = {
@@ -109,12 +105,32 @@ const FunnelChart = ({ funneldata, labels }) => {
 
   return <div ref={divRef} className='flex relative bg-white flex-col w-[80%]'>
   <Plot data={data} layout={layout} config={config}/>
-  <div className='absolute top-0 right-0 p-2'>
-  <button onClick={handleShareLinkedIn}><AiFillLinkedin color='0077b5' size={20} /></button>
-  <button onClick={handleShareTwitter}><AiFillTwitterSquare color='1DA1F2' size={20} /></button>
-  <button onClick={handleDownload}><IoMdDownload color='228B22' size={20} /></button>
+  <div className='absolute top-0 right-0 px-2 py-1' style={{ display: 'flex', alignItems: 'center' }}>
+
+    <button onClick={handleDownload} className="mr-2"><IoMdDownload color='228B22' size={20} /></button>
+
+    <div onClick={handleOpenPopup} className="pb-2 mr-2">
+      <BsFillShareFill color='1DA1F2' size={15} />
+    </div>
+
+    <div ref={popupRef} className="popup" style={{ display: 'none' }}>
+
+      <button onClick={handleShareLinkedIn} className="mr-2">
+            <AiFillLinkedin color='0077b5' size={19} />
+      </button>
+
+      <button onClick={handleShareTwitter} className="mr-2">
+          <AiFillTwitterSquare color='1DA1F2' size={19} />
+      </button>
+
+      <button onClick={handleClosePopup} className="popup-close">
+          <AiFillCloseCircle color='FF0000' size={19} />
+      </button>
+
+    </div>
+
   </div>
-  </div>;;
+  </div>
 };
 
 

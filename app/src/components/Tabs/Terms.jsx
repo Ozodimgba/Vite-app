@@ -46,7 +46,7 @@ function Terms() {
     <div className='flex flex-col items-center gap-4'>
         
         <div className='w-[80%]'>
-      <BarChart bardata={quarter} yLabel="Terms count" title='Individual quarterly terms count' />
+      <BarChart bardata={quarter} yLabel="Terms count" title='Term Frequency Breakdown By Quarter' />
       </div>
        <HeatmapChart heatdata={tfr} />
        <div className='bg-[#141414] px-2 flex text-center rounded-lg'>

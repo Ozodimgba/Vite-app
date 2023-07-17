@@ -4,7 +4,8 @@ import axios from 'axios';
 import html2canvas from 'html2canvas';
 import download from 'downloadjs';
 import { IoMdDownload } from 'react-icons/io'
-import { AiFillTwitterSquare, AiFillLinkedin } from 'react-icons/ai'
+import { AiFillTwitterSquare, AiFillLinkedin, AiFillCloseCircle } from 'react-icons/ai'
+import { BsFillShareFill } from "react-icons/bs";
 
 const Cloud = () => {
   const [tagData, setTagData] = useState([]);
@@ -114,24 +115,53 @@ const Cloud = () => {
     fetchData();
   }, []);
 
+  const popupRef = useRef(null);
+
+  const handleOpenPopup = () => {
+    popupRef.current.style.display = 'block';
+  }
+
+  const handleClosePopup = () => {
+    popupRef.current.style.display = 'none';
+  }
+
+  const options = {
+    luminosity: 'light',
+    hue: 'blue',
+  }
+
   return (
     <div>
       {isLoading ? (
         <div className='text-white'>Loading...</div> // Show a loading state
       ) : (
         <div ref={divRef} className='bg-[#141414]' >
+        {/* <h1>Term Frequency By Country</h1> */}
         <TagCloud
-          minSize={12}
-          maxSize={35}
+          minSize={10}
+          maxSize={100}
           tags={tagData}
           className="simple-cloud"
-          onClick={(tag) => alert(`'${tag.value}' was selected!`)}
+          // colorOptions={options}
         />
-        <div className='flex justify-end px-2 py-1'>
-  <button onClick={handleShareLinkedIn}><AiFillLinkedin color='0077b5' size={20} /></button>
-  <button onClick={handleShareTwitter}><AiFillTwitterSquare color='1DA1F2' size={20} /></button>
-  <button onClick={handleDownload}><IoMdDownload color='228B22' size={20} /></button>
-  </div>
+          <div className='flex justify-end px-2 py-1'>
+
+            <button onClick={handleDownload} className="mr-2"><IoMdDownload color='228B22' size={20} /></button>
+
+            <div onClick={handleOpenPopup} className="pb-2 mr-2">
+              <BsFillShareFill color='1DA1F2' size={15} />
+            </div>
+
+            <div ref={popupRef} className="popup" style={{ display: 'none' }}>
+              <button onClick={handleShareLinkedIn} className="mr-2">
+                <AiFillLinkedin color='0077b5' size={19} />
+              </button>
+              <button onClick={handleShareTwitter} className="mr-2">
+                <AiFillTwitterSquare color='1DA1F2' size={19} />
+              </button>
+            </div>
+
+          </div>
         </div>
       )}
     </div>

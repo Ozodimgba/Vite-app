@@ -107,7 +107,7 @@ function App() {
       <SideBar setCurrentIndex={setCurrentIndex} currentIndex={currentIndex} />
       <div className='h-full px-6 w-[80%]'>
       <FixedHeader card={card} cardthree={card3} cardtwo={card2} list={data1} setCurrentIndex={setCurrentIndex} currentIndex={currentIndex} />
-      
+      <h4 className='text-xl text-[#1b254b] font-bold'>Data at a Glance</h4>
       {Tabs[currentIndex]}
       </div>
     {/* {allDataLoaded ? (

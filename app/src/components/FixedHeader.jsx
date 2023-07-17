@@ -38,17 +38,17 @@ function FixedHeader({ card, cardtwo, cardthree, currentIndex, setCurrentIndex, 
   }
 
   const slides = [<div className='grid grid-cols-3 w-[100%] relative gap-6'>
-      <Card title="Companies Present Based On Filters" color="bg-blue-800" number={card?.companies_present} icon={My_Component}  duration={5000} />
-      <Card title="Countries Present Based On Filters" color="bg-purple-600" number={card?.countries_present} icon={My_Component2}  duration={5000} />
-      <Card title="Sectors Present Based On Filters" color="bg-orange-500" number={card?.sectors_present} icon={My_Component3}  duration={5000} />
+      <Card title="Company Count By User Filter" color="bg-blue-800" number={card?.companies_present} icon={My_Component}  duration={5000} />
+      <Card title="Country Count By User Filter" color="bg-purple-600" number={card?.countries_present} icon={My_Component2}  duration={5000} />
+      <Card title="Sectors Count By User Filter" color="bg-orange-500" number={card?.sectors_present} icon={My_Component3}  duration={5000} />
       </div>, <div className='grid grid-cols-3 w-[100%] relative gap-6'>
-      <Card title="Total Revenue Across Companies" color="bg-purple-600" number={cardtwo?.total_revenue} icon={My_Component4}  duration={5000} />
-    <Card title="Total Operating Income Across Companies" color="bg-red-400" number={cardtwo?.total_operating_income} icon={My_Component4} duration={5000} />
-    <Card title="Total Gross Profit Across Companies" color="bg-green-400" number={cardtwo?.total_gross_profit} icon={My_Component4}  duration={5000} /> 
+      <Card title="Consolidated Revenue Across Companies By User Filter" color="bg-purple-600" number={cardtwo?.total_revenue} icon={My_Component4}  duration={5000} />
+    <Card title="Consolidated Operating Income Across Companies By User Filter" color="bg-purple-600" number={cardtwo?.total_operating_income} icon={My_Component4} duration={5000} />
+    <Card title="Consolidated Gross Profit Across Companies By User Filter" color="bg-purple-600" number={cardtwo?.total_gross_profit} icon={My_Component4}  duration={5000} /> 
       </div>, <div className='grid grid-cols-3 w-[100%] relative gap-6'>
-      <Card title="Average Revenue Across Companies" color="bg-orange-500" number={cardthree?.average_revenue}  icon={My_Component4} duration={5000} />
-    <Card title="Average Operating Income Across Companies" color="bg-purple-600" number={cardthree?.average_operating_income}  icon={My_Component4} duration={5000} />
-    <Card title="Average Gross Profit Across Companies" color="bg-blue-800" number={cardthree?.average_gross_profit} icon={My_Component4} duration={5000} /> 
+      <Card title="Average Revenue Across Companies By User Filter" color="bg-orange-500" number={cardthree?.average_revenue}  icon={My_Component4} duration={5000} />
+    <Card title="Average Operating Income Across Companies By User Filter" color="bg-orange-500" number={cardthree?.average_operating_income}  icon={My_Component4} duration={5000} />
+    <Card title="Average Gross Profit Across Companies By User Filter" color="bg-orange-500" number={cardthree?.average_gross_profit} icon={My_Component4} duration={5000} /> 
      
       </div>];
     
@@ -81,6 +81,7 @@ function FixedHeader({ card, cardtwo, cardthree, currentIndex, setCurrentIndex, 
       ))}
     </div>
     </div>
+    <h4 className='text-xl text-[#1b254b] font-bold'>Data at a Glance</h4>
     <Carousel slides={slides} />
      </div>
   )
