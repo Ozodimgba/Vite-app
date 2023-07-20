@@ -35,8 +35,12 @@ const Cloud = () => {
         const overlayImage = new Image();
         overlayImage.src = 'logo.png';
         overlayImage.onload = () => {
-          context.drawImage(overlayImage, 0, 0);
+          
+          const x = canvas.width - overlayImage.width;
+          const y = canvas.height - overlayImage.height;
 
+          context.drawImage(overlayImage, x, y);
+          
           // Convert the overlay canvas to data URL
           const finalImage = overlayCanvas.toDataURL('image/png');
 
@@ -136,7 +140,8 @@ const Cloud = () => {
         <div className='text-white'>Loading...</div> // Show a loading state
       ) : (
         <div ref={divRef} className='bg-[#141414]' >
-        {/* <h1>Term Frequency By Country</h1> */}
+        <h1 className='wordcloud-title' style={{ color: 'white' }}>Wordcloud Representation of Terms By Frequency</h1>
+        <br/>
         <TagCloud
           minSize={10}
           maxSize={100}

@@ -11,7 +11,7 @@ function Main({ regions, country, companies, sectors, terms }) {
     const [counter, setCounter] = useState(0)
     const [currentIndex, setCurrentIndex] = useState(0)
 
-    console.log(sectors)
+    // console.log(sectors)
 
     const payload = {
         "from_year": yearRange[0],
@@ -55,7 +55,7 @@ function Main({ regions, country, companies, sectors, terms }) {
       const { data: four, error: error6 } = useSWR(urls[5], fetcher, options);
       const { data: five, error: error7 } = useSWR(urls[6], fetcher, options);
       const { data: six, error: error8 } = useSWR(urls[7], fetcher, options);
-      console.log(tfo, btr, one);
+      // console.log(tfo, btr, one);
 
 
   return (

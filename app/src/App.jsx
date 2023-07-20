@@ -61,9 +61,6 @@ function App() {
           const { data: card, error: error2 } = useSWR(urls[1], fetcher);
           const { data: card2, error: error3 } = useSWR(urls[2], fetcher);
           const { data: card3, error: error4 } = useSWR(urls[3], fetcher);
-          console.log(card3)
-          
-          
 
           const Tabs = [
             <Main regions={regions} sectors={sectors} terms={terms} country={country} companies={companies} />,

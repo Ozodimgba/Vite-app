@@ -50,8 +50,12 @@ const FunnelChart = ({ funneldata, labels }) => {
         const overlayImage = new Image();
         overlayImage.src = 'logo.png';
         overlayImage.onload = () => {
-          context.drawImage(overlayImage, 0, 0);
+          
+          const x = canvas.width - overlayImage.width;
+          const y = canvas.height - overlayImage.height;
 
+          context.drawImage(overlayImage, x, y);
+          
           // Convert the overlay canvas to data URL
           const finalImage = overlayCanvas.toDataURL('image/png');
 

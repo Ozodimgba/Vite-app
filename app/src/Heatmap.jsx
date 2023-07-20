@@ -52,13 +52,17 @@ const HeatmapChart = ({ heatdata }) => {
         const overlayImage = new Image();
         overlayImage.src = 'logo.png';
         overlayImage.onload = () => {
-          context.drawImage(overlayImage, 0, 0);
+          
+          const x = canvas.width - overlayImage.width;
+          const y = canvas.height - overlayImage.height;
+
+          context.drawImage(overlayImage, x, y);
 
           // Convert the overlay canvas to data URL
           const finalImage = overlayCanvas.toDataURL('image/png');
 
           // Trigger the download of the final image
-          download(finalImage, 'chart.png');
+          download(finalImage, 'Term Frequency Breakdown By Year and Quarter.png');
         };
       };
     });

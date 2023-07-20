@@ -31,7 +31,7 @@ function Finance({ regions, country, companies, sectors, terms }) {
       const fetcher = async (url) => {
         const response = await axios.post(url, payload);
         const data = JSON.parse(response.data)
-        console.log(JSON.stringify(data))
+        // console.log(JSON.stringify(data))
         return data;
       };
       
@@ -40,7 +40,7 @@ function Finance({ regions, country, companies, sectors, terms }) {
       const { data: nine, error: error2 } = useSWR(urls[1], fetcher);
       const { data: ten, error: error3 } = useSWR(urls[2], fetcher);
       
-      console.log(eight, ten)
+      // console.log(eight, ten)
 
   return (
     <div className='w-full flex flex-col items-center gap-4 justify-center'>

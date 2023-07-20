@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { AiOutlineArrowLeft, AiOutlineArrowRight} from "react-icons/ai";
+import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from "react-icons/bs";
 
 const Carousel = ({ slides }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -39,11 +41,11 @@ const Carousel = ({ slides }) => {
       </div>
      
      <div className='flex w-[100%]'>
-     <button className="carousel-control carousel-control-prev" onClick={goToPreviousSlide}>
-        Previous
+     <button className="carousel-control carousel-control-prev justify-center" onClick={goToPreviousSlide}>
+        <BsFillArrowLeftCircleFill color='1DA1F2' size={19} />
       </button>
       <button className="carousel-control carousel-control-next" onClick={goToNextSlide}>
-        Next
+        <BsFillArrowRightCircleFill color='1DA1F2' size={19} />
       </button>
      </div>
       
