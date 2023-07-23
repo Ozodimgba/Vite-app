@@ -9,7 +9,7 @@ import { BsFillShareFill } from "react-icons/bs";
 
 const FunnelChart = ({ funneldata, labels }) => {
   const data = funneldata?.data;
-  console.log(data)
+ // console.log(data)
   const layout = {
     margin: {l: 200, r: 0},
     title: `${labels}`,

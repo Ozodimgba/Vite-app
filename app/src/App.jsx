@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable react/jsx-no-undef */
 /* eslint-disable no-unused-vars */
-import React,{ useState } from 'react';
+import React,{ useState, useEffect } from 'react';
 import FixedHeader from './components/FixedHeader';
 import { BiFlag, BiSolidCircleThreeQuarter } from 'react-icons/bi'
 import { MdOutlineAttachMoney, MdOutlineAccountBalance } from 'react-icons/md'
@@ -23,6 +23,10 @@ function App() {
     const [counter, setCounter] = useState(0)
     const [currentIndex, setCurrentIndex] = useState(0)
 
+    console.log(yearRange)
+
+    
+
     const payload = {
         "from_year": yearRange[0],
         "to_year": yearRange[1],
@@ -32,6 +36,10 @@ function App() {
         "sectors": sectors,
         "terms": terms
       }
+
+      useEffect(() =>{
+
+      },[payload])
 
       const [isLoading, setIsLoading] = useState(true);
       const [data, setData] = useState([]);
@@ -100,7 +108,7 @@ function App() {
       
       <SideBar setCurrentIndex={setCurrentIndex} currentIndex={currentIndex} />
       <div className='h-full px-6 w-[80%]'>
-      <FixedHeader card={card} regions={regions} sector={sectors} setSectors={setSectors} companies={companies} setCompanies={setCompanies} country={country} setCountry={setCountry} setRegions={setRegions} terms={terms} setTerms={setTerms} cardthree={card3} cardtwo={card2} list={data1} setCurrentIndex={setCurrentIndex} currentIndex={currentIndex} />
+      <FixedHeader yearRange={yearRange} setYearRange={setYearRange} card={card} regions={regions} sector={sectors} setSectors={setSectors} companies={companies} setCompanies={setCompanies} country={country} setCountry={setCountry} setRegions={setRegions} terms={terms} setTerms={setTerms} cardthree={card3} cardtwo={card2} list={data1} setCurrentIndex={setCurrentIndex} currentIndex={currentIndex} />
       
       {Tabs[currentIndex]}
       </div>

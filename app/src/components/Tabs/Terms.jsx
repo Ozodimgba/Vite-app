@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import Map from '../../Map'
 import Cloud from '../../Word'
 import BarChart from '../../BarChart';

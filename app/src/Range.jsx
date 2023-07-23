@@ -9,7 +9,7 @@ export default function YearRange ({ yearRange, setYearRange}){
 
     const handleYearChange = (values) => {
       setYearRange(values);
-      console.log(yearRange)
+      //console.log(yearRange)
     };
 
  return (

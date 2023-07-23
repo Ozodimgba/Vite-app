@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import useSWR from 'swr';
 import MainCard from '../MainCard';
 import BarChart from '../../BarChart';
@@ -10,6 +10,15 @@ function Main({ regions, country, companies, sectors, terms }) {
     const [yearRange, setYearRange] = useState([2012, 2022]);
     const [counter, setCounter] = useState(0)
     const [currentIndex, setCurrentIndex] = useState(0)
+    const [isLoading, setIsLoading] = useState(true);
+    const [tfo, setTFO] = useState([]);
+    const [btr, setBTR] = useState([]);
+    const [one, setOne] = useState([]);
+    const [two, setTwo] = useState([]);
+    const [three, setThree] = useState([]);
+    const [four, setFour] = useState([])
+    const [five, setFive] = useState([])
+    const [six, setSix] = useState([])
 
     // console.log(sectors)
 
@@ -23,7 +32,14 @@ function Main({ regions, country, companies, sectors, terms }) {
         "terms": terms
       }
 
-    const urls = [
+      const fetcher = async (url) => {
+        const response = await axios.post(url, payload);
+        const data = JSON.parse(response.data)
+        console.log(JSON.stringify(data))
+        return data;
+      };
+
+      const urls = [
         'https://data-value-tool.up.railway.app/top-5-terms-by-revenue',
         'https://data-value-tool.up.railway.app/bottom-5-terms-by-revenue',
         'https://data-value-tool.up.railway.app/top-5-terms-by-cost-of-revenue',
@@ -34,28 +50,72 @@ function Main({ regions, country, companies, sectors, terms }) {
         'https://data-value-tool.up.railway.app/bottom-5-terms-and-corresponding-financials',
         // Add more URLs for other API calls
       ];
-    
-      const fetcher = async (url) => {
-        const response = await axios.post(url, payload);
-        const data = JSON.parse(response.data)
-        console.log(JSON.stringify(data))
-        return data;
-      };
-    
+
       const options = {
         revalidateOnMount: true,
         revalidateOnFocus: true,
       };
+
+      const fetchData = async () => {
+        try {
+          const [data1, data2, data3, data4, data5, data6, data7, data8] = await Promise.all([
+            fetcher(urls[0]),
+            fetcher(urls[1]),
+            fetcher(urls[2]),
+            fetcher(urls[3]),
+            fetcher(urls[4]),
+            fetcher(urls[5]),
+            fetcher(urls[6]),
+            fetcher(urls[7])
+            // Add more fetcher calls for other data sets
+          ]);
+          
+          setTFO(data1);
+          setBTR(data2);
+          setOne(data3);
+          setTwo(data4);
+          setThree(data5)
+          setFour(data6);
+          setFive(data7)
+          setSix(data8)
+          setIsLoading(false);
+
+          return data1
+
+          console.log(tfo, btr, one, two);
+          // Set other data states
+        } catch (error) {
+          console.error(error);
+          setIsLoading(false);
+        }
+      };
+
+      console.log()
+
+
+      useEffect(() => {
+      const timeout =  setTimeout(() => {
+          fetchData();
+        }, 500);
     
-      const { data: tfo, error: error1 } = useSWR(urls[0], fetcher, options);
-      const { data: btr, error: error2 } = useSWR(urls[1], fetcher, options);
-      const { data: one, error: error3 } = useSWR(urls[2], fetcher, options);
-      const { data: two, error: error4 } = useSWR(urls[3], fetcher, options);
-      const { data: three, error: error5 } = useSWR(urls[4], fetcher, options);
-      const { data: four, error: error6 } = useSWR(urls[5], fetcher, options);
-      const { data: five, error: error7 } = useSWR(urls[6], fetcher, options);
-      const { data: six, error: error8 } = useSWR(urls[7], fetcher, options);
-      // console.log(tfo, btr, one);
+        // Cleanup function
+        return () => clearTimeout(timeout);
+      }, [payload]);
+
+      if (isLoading) {
+        return <div>Loading...</div>;
+      }
+
+    
+    
+      
+    
+    
+      // const { data: three, error: error5 } = useSWR(urls[4], fetcher, options);
+      // const { data: four, error: error6 } = useSWR(urls[5], fetcher, options);
+      // const { data: five, error: error7 } = useSWR(urls[6], fetcher, options);
+      // const { data: six, error: error8 } = useSWR(urls[7], fetcher, options);
+     // console.log(tfo, btr, one, two);
 
 
   return (

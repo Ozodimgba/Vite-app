@@ -9,6 +9,7 @@ import { AiFillTwitterSquare, AiFillLinkedin, AiFillCloseCircle } from 'react-ic
 import { BsFillShareFill } from "react-icons/bs";
 
 const BarChart = ({ bardata, title, yLabel }) => {
+ // console.log(bardata)
   const data = [
     {
       x: bardata?.labels,

@@ -11,10 +11,11 @@ import Carousel from './Carousel'
 import Query from './Query'
 import Terms from './filters/Terms'
 
-function FixedHeader({ card, cardtwo, terms, setTerms, sectors, setSectors, regions, companies, setCompanies, setRegions, country, setCountry, cardthree, currentIndex, setCurrentIndex, list }) {
+function FixedHeader({ yearRange, setYearRange, card, cardtwo, terms, setTerms, sectors, setSectors, regions, companies, setCompanies, setRegions, country, setCountry, cardthree, currentIndex, setCurrentIndex, list }) {
 
-  const [yearRange, setYearRange] = useState([2012, 2022]);
+  
   const [selectedTags, setSelectedTags] = useState([]);
+  //console.log(yearRange)
 
   const My_Component = <MdOutlineAccountBalance color='white' />
   const My_Component2 = <BiFlag color='white' />
