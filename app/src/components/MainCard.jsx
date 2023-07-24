@@ -5,8 +5,9 @@
 import { useEffect, useState } from "react";
 import Term from "./filters/Term";
 import axios from "axios";
+import useSWR from 'swr';
 
-const MainCard = ({ data }) => {
+const MainCard = ({ data, yearRange, regions, country, companies, sectors, terms }) => {
   const [ isLoading, setIsLoading ] = useState(true)
   const [term, setTerm] = useState('Cloud')
   const [cardData, setCardData] = useState({ 
@@ -15,54 +16,72 @@ const MainCard = ({ data }) => {
     "Average Operating Income": 0
   })
   
-    if (!data) {
+    if (!cardData) {
       return null; // or render a fallback component/error message
     }
 
     const payload = {
-      "from_year": 2012,
-      "to_year": 2019,
-      "regions": ["All"],
-      "countries": ["All"],
-      "companies": ["All"],
-      "sectors": ["All"],
-      "terms": ["All"],
-      "term": term
+      "from_year": yearRange[0],
+      "to_year": yearRange[1],
+      "regions": regions,
+      "countries": country,
+      "companies": companies,
+      "sectors": sectors,
+      "terms": terms,
+      'term': term
     }
+
+    const urls = [
+      'https://data-value-tool.up.railway.app/average-financials-for-individual-terms'
+      // Add more URLs for other API calls
+    ];
+  
+    const fetcher = async (url) => {
+      const response = await axios.post(url, payload);
+      const data = JSON.parse(response.data)
+      console.log(data)
+      setIsLoading(false)
+      return data;
+    };
+
+    const options = {
+      revalidateOnMount: true,
+      revalidateOnFocus: true,
+    };
+
+    const fetchData = async () => {
+      try {
+        const [data1,] = await Promise.all([
+          fetcher(urls[0]),
+          // Add more fetcher calls for other data sets
+        ]);
+        
+        setCardData(data1)
+        setIsLoading(false);
+
+        return data1
+
+        //console.log(tfo, btr, one, two);
+        // Set other data states
+      } catch (error) {
+        console.error(error);
+        setIsLoading(false);
+      }
+    };
 
     useEffect(() => {
       // Simulating an API call to fetch data
-      const fetchData = async () => {
-        
-        try {
-          // Set isLoading to true to show the loading state
-          setIsLoading(true);
-  
-          // Make the actual API call to fetch the dynamic data
-          const response = await axios.post('https://data-value-tool.up.railway.app/average-financials-for-individual-terms', payload);
-          const data = JSON.parse(response.data);
-          console.log(data)
-          setCardData(data)
-      
-  
-          // Update the state with the fetched data
-         // setTagData(data.data);
-          
-          // Set isLoading to false to hide the loading state
-          setIsLoading(false);
-        } catch (error) {
-          console.error('Error fetching tag cloud data:', error);
-        }
-      };
   
       fetchData();
-    }, [payload]);
+    }, [payload, term, cardData]);
     
     const { 
       "Average Revenue": AvrgRev,
       "Average Revenue Cost": AvrgRevCost,
       "Average Operating Income": AvrgOprInc
     } = cardData;
+
+    console.log(0)
   
    
   

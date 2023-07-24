@@ -1,3 +1,6 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import { useState, useEffect, useRef } from 'react';
 import { TagCloud } from 'react-tagcloud';
 import axios from 'axios';
@@ -7,7 +10,7 @@ import { IoMdDownload } from 'react-icons/io'
 import { AiFillTwitterSquare, AiFillLinkedin, AiFillCloseCircle } from 'react-icons/ai'
 import { BsFillShareFill } from "react-icons/bs";
 
-const Cloud = () => {
+const Cloud = ({ yearRange, regions, country, companies, sectors, terms }) => {
   const [tagData, setTagData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -82,29 +85,31 @@ const Cloud = () => {
     });
   };
 
+
+  const payload = {
+    "from_year": yearRange[0],
+    "to_year": yearRange[1],
+    "regions": regions,
+    "countries": country,
+    "companies": companies,
+    "sectors": sectors,
+    "terms": terms
+  }
  
 
   useEffect(() => {
     // Simulating an API call to fetch data
     const fetchData = async () => {
-      const payload = {
-        "from_year": 2012,
-        "to_year": 2019,
-        "regions": ["All"],
-        "countries": ["All"],
-        "companies": ["All"],
-        "sectors": ["All"],
-        "terms": ["All"]
-      }
+      
       try {
         // Set isLoading to true to show the loading state
-        setIsLoading(true);
+        setIsLoading(false);
 
         // Make the actual API call to fetch the dynamic data
         const response = await axios.post('https://data-value-tool.up.railway.app/terms-frequencies-count-for-wordcloud-and-table', payload);
         const data = JSON.parse(response.data);
 
-    
+        console.log(data)
 
         // Update the state with the fetched data
         setTagData(data.data);
@@ -117,7 +122,7 @@ const Cloud = () => {
     };
 
     fetchData();
-  }, []);
+  }, [payload, tagData]);
 
   const popupRef = useRef(null);
 

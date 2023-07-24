@@ -1,3 +1,8 @@
+/* eslint-disable react/jsx-key */
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unreachable */
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import React,{useState} from 'react'
 import { BiFlag, BiSolidCircleThreeQuarter } from 'react-icons/bi'
 import { MdOutlineAttachMoney, MdOutlineAccountBalance } from 'react-icons/md'

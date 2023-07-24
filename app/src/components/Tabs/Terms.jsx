@@ -1,3 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unreachable */
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import React,{useState, useEffect} from 'react'
 import Map from '../../Map'
 import Cloud from '../../Word'
@@ -6,10 +10,13 @@ import HeatmapChart from '../../Heatmap';
 import useSWR from 'swr';
 import axios from 'axios';
 
-function Terms({ regions, country, companies, sectors, terms }) {
-    const [yearRange, setYearRange] = useState([2012, 2022]);
+function Terms({ yearRange, regions, country, companies, sectors, terms }) {
+    //const [yearRange, setYearRange] = useState([2012, 2022]);
     const [counter, setCounter] = useState(0)
     const [currentIndex, setCurrentIndex] = useState(0)
+    const [ quarter, setQuarter] = useState(null)
+    const [isLoading, setIsLoading] = useState(true);
+    const [ tfr, setTFR] = useState(null)
 
     const payload = {
         "from_year": yearRange[0],
@@ -32,9 +39,42 @@ function Terms({ regions, country, companies, sectors, terms }) {
         console.log(JSON.stringify(data))
         return data;
       };
+
+      const fetchData = async () => {
+        try {
+          const [data1, data2] = await Promise.all([
+            fetcher(urls[0]),
+            fetcher(urls[1]),
+            
+            // Add more fetcher calls for other data sets
+          ]);
+          
+          setQuarter(data1);
+          setTFR(data2)
+          setIsLoading(false);
+
+          return data1
+
+          //console.log(tfo, btr, one, two);
+          // Set other data states
+        } catch (error) {
+          console.error(error);
+          setIsLoading(false);
+        }
+      };
+
+      useEffect(() => {
+        const timeout =  setTimeout(() => {
+            fetchData();
+          }, 500);
+      
+          // Cleanup function
+          return () => clearTimeout(timeout);
+        }, [payload]);
+
     
-      const { data: quarter, error: error1 } = useSWR(urls[0], fetcher);
-      const { data: tfr, error: error2 } = useSWR(urls[1], fetcher);
+     // const { data: quarter, error: error1 } = useSWR(urls[0], fetcher);
+     // const { data: tfr, error: error2 } = useSWR(urls[1], fetcher);
       
       
   return (
@@ -45,9 +85,9 @@ function Terms({ regions, country, companies, sectors, terms }) {
       </div>
        <HeatmapChart heatdata={tfr} />
        <div className='bg-[#141414] px-2 flex text-center rounded-lg'>
-      <Cloud />
+      <Cloud yearRange={yearRange} regions={regions} sectors={sectors} terms={terms} country={country} companies={companies} />
       </div>
-        <Map />
+        <Map yearRange={yearRange} regions={regions} sectors={sectors} terms={terms} country={country} companies={companies} />
     </div>
   )
 }

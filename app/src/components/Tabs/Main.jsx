@@ -1,3 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unreachable */
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import React,{useState, useEffect} from 'react'
 import useSWR from 'swr';
 import MainCard from '../MainCard';
@@ -5,9 +9,9 @@ import BarChart from '../../BarChart';
 import FunnelChart from '../../FunnelChart';
 import axios from 'axios';
 
-function Main({ regions, country, companies, sectors, terms }) {
+function Main({ list, yearRange, regions, country, companies, sectors, terms }) {
     
-    const [yearRange, setYearRange] = useState([2012, 2022]);
+    //const [yearRange, setYearRange] = useState([2012, 2022]);
     const [counter, setCounter] = useState(0)
     const [currentIndex, setCurrentIndex] = useState(0)
     const [isLoading, setIsLoading] = useState(true);
@@ -122,7 +126,7 @@ function Main({ regions, country, companies, sectors, terms }) {
     <div className='w-[100%] grid grid-cols-2 gap-3'>
       <div className='col-span-2 flex flex-col items-center bg-white rounded-md shadow-md'>
   
-       <MainCard />
+       <MainCard data={list} yearRange={yearRange} regions={regions} sectors={sectors} terms={terms} country={country} companies={companies} />
         
       </div>
     <BarChart bardata={tfo} yLabel="Revenue" title="Top Five Terms by Revenue" />

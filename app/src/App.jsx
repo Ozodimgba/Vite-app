@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-key */
 /* eslint-disable react/jsx-no-undef */
 /* eslint-disable no-unused-vars */
@@ -21,6 +22,10 @@ function App() {
     const [yearRange, setYearRange] = useState([2012, 2022]);
     const [sectors, setSectors] = useState(['All'])
     const [counter, setCounter] = useState(0)
+    const [card, setCard] = useState(null)
+    const [card2, setCard2] = useState(null)
+    const [card3, setCard3] = useState(null)
+    const [data1, setData1] = useState(null)
     const [currentIndex, setCurrentIndex] = useState(0)
 
     console.log(yearRange)
@@ -37,9 +42,7 @@ function App() {
         "terms": terms
       }
 
-      useEffect(() =>{
-
-      },[payload])
+      
 
       const [isLoading, setIsLoading] = useState(true);
       const [data, setData] = useState([]);
@@ -64,16 +67,56 @@ function App() {
             setIsLoading(false)
             return data;
           };
+          
+          const options = {
+            revalidateOnMount: true,
+            revalidateOnFocus: true,
+          };
+          
+          const fetchData = async () => {
+            try {
+              const [data1, data2, data3, data4] = await Promise.all([
+                fetcher(urls[0]),
+                fetcher(urls[1]),
+                fetcher(urls[2]),
+                fetcher(urls[3]),
+                // Add more fetcher calls for other data sets
+              ]);
+              
+              setData1(data1)
+              setCard(data2)
+              setCard2(data3)
+              setCard3(data4)
+              setIsLoading(false);
+    
+              return data1
+    
+              //console.log(tfo, btr, one, two);
+              // Set other data states
+            } catch (error) {
+              console.error(error);
+              setIsLoading(false);
+            }
+          };
+
+          useEffect(() => {
+            const timeout =  setTimeout(() => {
+                fetchData();
+              }, 500);
+          
+              // Cleanup function
+              return () => clearTimeout(timeout);
+            }, [payload]);
         
-          const { data: data1, error: error1 } = useSWR(urls[0], fetcher);
-          const { data: card, error: error2 } = useSWR(urls[1], fetcher);
-          const { data: card2, error: error3 } = useSWR(urls[2], fetcher);
-          const { data: card3, error: error4 } = useSWR(urls[3], fetcher);
+          // const { data: data1, error: error1 } = useSWR(urls[0], fetcher);
+          //const { data: card, error: error2 } = useSWR(urls[1], fetcher);
+          //const { data: card2, error: error3 } = useSWR(urls[2], fetcher);
+          // const { data: card3, error: error4 } = useSWR(urls[3], fetcher);
 
           const Tabs = [
-            <Main regions={regions} sectors={sectors} terms={terms} country={country} companies={companies} />,
-            <Finance regions={regions} sectors={sectors} terms={terms} country={country} companies={companies} />,
-            <Terms regions={regions} sectors={sectors} terms={terms} country={country} companies={companies} />,
+            <Main list={data1} yearRange={yearRange} regions={regions} sectors={sectors} terms={terms} country={country} companies={companies} />,
+            <Finance yearRange={yearRange} regions={regions} sectors={sectors} terms={terms} country={country} companies={companies} />,
+            <Terms yearRange={yearRange} regions={regions} sectors={sectors} terms={terms} country={country} companies={companies} />,
           ]
           
           

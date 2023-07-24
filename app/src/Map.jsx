@@ -1,3 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-undef */
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
@@ -6,19 +9,19 @@ import countries from "./world_countries.json";
 import { AiFillTwitterSquare, AiFillLinkedin, AiFillCloseCircle } from 'react-icons/ai'
 import { BsFillShareFill } from "react-icons/bs";
 
-function Map() {
+function Map({ yearRange, regions, country, companies, sectors, terms }) {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState();
 
   const payload = {
-      "from_year": 2012,
-      "to_year": 2022,
-      "regions": ["All"],
-      "countries": ["All"],
-      "companies": ["All"],
-      "sectors": ["All"],
-      "terms": ["All"],
-  };
+    "from_year": yearRange[0],
+    "to_year": yearRange[1],
+    "regions": regions,
+    "countries": country,
+    "companies": companies,
+    "sectors": sectors,
+    "terms": terms
+  }
 
   const divRef = useRef(null);
 
