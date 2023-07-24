@@ -94,9 +94,9 @@ function Finance({ yearRange, regions, country, companies, sectors, terms }) {
 
   return (
     <div className='w-full flex flex-col items-center gap-4 justify-center'>
-    <TreeMapChart treedata={eight} />
-    <TreeMapChart treedata={nine} />
-    <TreeMapChart treedata={ten} />
+    <TreeMapChart treedata={eight} footnote="This provides a comprehensive breakdown of the average operating income. When hovering over a specific year, you can view the total operating income for that year, while selecting it will reveal the individual operating income figures for the quarters contributing to the final result."/>
+    <TreeMapChart treedata={nine} footnote="This offers a detailed breakdown of the average revenue. Hovering over a particular year will display the total revenue for that year, and selecting it will reveal the revenue generated in the various quarters that contributed to the final result."/>
+    <TreeMapChart treedata={ten} footnote="This breakdown offers detailed insights into the average cost of revenue. As you hover over a specific year, the total cost of revenue for that year will be displayed, and selecting it will provide a closer look at the cost of revenue associated with the various quarters contributing to the final result."/>
     </div>
   )
 }

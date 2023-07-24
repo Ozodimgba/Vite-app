@@ -81,7 +81,7 @@ function Terms({ yearRange, regions, country, companies, sectors, terms }) {
     <div className='flex flex-col items-center gap-4'>
         
         <div className='w-[80%]'>
-      <BarChart bardata={quarter} yLabel="Terms count" title='Term Frequency Breakdown By Quarter' />
+      <BarChart bardata={quarter} yLabel="Terms count" title='Keyword Breakdown By Quarter' footnote="This visualization illustrates the overall frequencies of terms across individual quarters. It provides an overview of the occurrences of various terms throughout each quarter."/>
       </div>
        <HeatmapChart heatdata={tfr} />
        <div className='bg-[#141414] px-2 flex text-center rounded-lg'>

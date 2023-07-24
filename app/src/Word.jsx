@@ -65,7 +65,16 @@ const Cloud = ({ yearRange, regions, country, companies, sectors, terms }) => {
         const url = window.URL.createObjectURL(blob);
 
         const linkedInShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=https://dataproducts.io`;
-        window.open(linkedInShareUrl, '_blank');
+        
+        // Open the LinkedIn share URL in a popup window
+        const windowOptions = 'width=550,height=420,top=100,left=100';
+        const popup = window.open(linkedInShareUrl, '_blank', windowOptions);
+        if (popup) {
+            popup.focus();
+        } else {
+            // If the popup was blocked by the browser, fall back to opening in a new tab
+            window.open(linkedInShareUrl, '_blank');
+        }
 
         // Clean up the object URL
         window.URL.revokeObjectURL(url);
@@ -80,8 +89,23 @@ const Cloud = ({ yearRange, regions, country, companies, sectors, terms }) => {
     html2canvas(divElement).then(canvas => {
       const image = canvas.toDataURL('image/png');
 
-      const twitterShareUrl = `https://twitter.com/intent/tweet?url=https://dataproducts.io&text=Check Out This Earnings Explorer App By Data Products LLC`;
-      window.open(twitterShareUrl, '_blank');
+     const twitterShareUrl = `https://twitter.com/intent/tweet?url=https://dataproducts.io&text=Check Out This Earnings Explorer App By @dataproducts #FinancialVizPro #DataInsights`;
+
+      const windowWidth = 550;
+      const windowHeight = 420;
+      const windowLeft = (window.screen.width - windowWidth) / 2;
+      const windowTop = (window.screen.height - windowHeight) / 2;
+      const windowOptions = `width=${windowWidth},height=${windowHeight},top=${windowTop},left=${windowLeft}`;
+
+      const popup = window.open(twitterShareUrl, '_blank', windowOptions);
+
+      if (popup) {
+            popup.focus();
+      } else {
+          // If the popup was blocked by the browser, fall back to opening in a new tab
+          window.open(twitterShareUrl, '_blank');
+      }
+
     });
   };
 
@@ -144,8 +168,9 @@ const Cloud = ({ yearRange, regions, country, companies, sectors, terms }) => {
       {isLoading ? (
         <div className='text-white'>Loading...</div> // Show a loading state
       ) : (
+        <div>
+          <h1 className='wordcloud-title' style={{ color: 'white' }}>Wordcloud Representation of Terms By Frequency</h1>
         <div ref={divRef} className='bg-[#141414]' >
-        <h1 className='wordcloud-title' style={{ color: 'white' }}>Wordcloud Representation of Terms By Frequency</h1>
         <br/>
         <TagCloud
           minSize={10}
@@ -173,6 +198,7 @@ const Cloud = ({ yearRange, regions, country, companies, sectors, terms }) => {
 
           </div>
         </div>
+      </div>
       )}
     </div>
   );

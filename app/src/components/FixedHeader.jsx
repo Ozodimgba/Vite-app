@@ -58,7 +58,9 @@ function FixedHeader({ yearRange, setYearRange, card, cardtwo, terms, setTerms, 
       <div className='w-full sticky top-0 right-0'>
       <div className='w-[100%] flex flex-row justify-between items-center'>
       <div className='w-[30%] flex flex-col py-3'>
-      <h1 className='text-3xl text-[#1b254b] font-bold'>Earning Explorer</h1>
+      <h1 className='text-3xl text-[#1b254b] font-bold'>FinancialViz Pro</h1>
+      <br/>
+      <h1 className='text-sm text-[#1b254b] font-bold'> Interactive Analysis & Visualization of Keyword Trends in Quarterly Financial Reports & Organizational Performance</h1>
       </div>
       <div className='w-[50%] z-50 pt-[2%] pr-5 h-full'>
         <Query />

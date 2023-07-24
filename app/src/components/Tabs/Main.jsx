@@ -129,17 +129,17 @@ function Main({ list, yearRange, regions, country, companies, sectors, terms }) 
        <MainCard data={list} yearRange={yearRange} regions={regions} sectors={sectors} terms={terms} country={country} companies={companies} />
         
       </div>
-    <BarChart bardata={tfo} yLabel="Revenue" title="Top Five Terms by Revenue" />
-    <BarChart bardata={btr} yLabel="Revenue" title="Bottom Five Terms by Revenue" />
-    <BarChart bardata={one} yLabel="Cost of Revenue" title="Top Five Terms by Cost of Revenue" />
-    <BarChart bardata={two} yLabel="Cost of Revenue" title='Bottom Five Terms by Cost of Revenue' />
-    <BarChart bardata={three} yLabel="Operating Income" title='Top Five Terms by Operating Income' />
-    <BarChart bardata={four} yLabel="Operating Income" title='Bottom Five Terms by Operating Income' />
+    <BarChart bardata={tfo} yLabel="Revenue" title="Top Five Terms by Revenue" footnote="These findings were obtained by examining each individual term and the corresponding revenue generated at the time of their mention. The chart displays the top 5 terms ranked by revenue among the ones analyzed." />
+    <BarChart bardata={btr} yLabel="Revenue" title="Bottom Five Terms by Revenue" footnote="These findings were obtained by examining each individual term and the corresponding revenue generated at the time of their mention. The chart displays the top 5 terms ranked by revenue among the ones analyzed." />
+    <BarChart bardata={one} yLabel="Cost of Revenue" title="Top Five Terms by Cost of Revenue" footnote="This data is based on the cost of revenue for each individual term at the respective time of mention. The chart showcases the top 5 terms sorted by their cost of revenue, as derived from the analysis"/>
+    <BarChart bardata={two} yLabel="Cost of Revenue" title='Bottom Five Terms by Cost of Revenue' footnote="This data is based on the cost of revenue for each individual term at the respective time of mention. The chart showcases the bottom 5 terms sorted by their cost of revenue, as derived from the analysis"/>
+    <BarChart bardata={three} yLabel="Operating Income" title='Top Five Terms by Operating Income' footnote="Subsequently, an analysis was conducted focusing on the operating income associated with each individual term when they were mentioned. From this analysis, the chart presents the top 5 terms ranked by their operating income, highlighting the most lucrative ones among them." />
+    <BarChart bardata={four} yLabel="Operating Income" title='Bottom Five Terms by Operating Income' footnote="Subsequently, an analysis was conducted focusing on the operating income associated with each individual term when they were mentioned. From this analysis, the chart presents the bottom 5 terms ranked by their operating income, highlighting the least lucrative ones among them."/>
     <div className='col-span-2 w-[100%] flex justify-center'>
-    <FunnelChart labels="Most Frequent Terms And Associated Financials" funneldata={five} />
+    <FunnelChart labels="Most Frequent Terms And Associated Financials" funneldata={five} footnote="In contrast to the preceding charts, the terms listed here are the most prevalent ones, considering both their frequency and their financial aspects such as revenue, cost of revenue, and operating income." />
     </div>
     <div className='col-span-2 w-[100%] flex justify-center'>
-    <FunnelChart labels="Least Frequent Terms And Associated Financials" funneldata={six} />
+    <FunnelChart labels="Least Frequent Terms And Associated Financials" funneldata={six} footnote="In comparison to the charts above, the terms listed here signify the least common ones, as determined by their frequency with the corresponding financial metrics, including revenue, cost of revenue, and operating income"/>
     </div>
     </div>
   )
